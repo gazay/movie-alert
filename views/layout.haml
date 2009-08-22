@@ -23,12 +23,12 @@
               %option.default Genre
               - Genres.each do |genre|
                 %option= genre.capitalize
-      %form#subscriptions( action='/' )
+      %form#subscriptions( action='/subscribe' )
         %ul
           %li#email
-            %input.default( type='text' value='Your e-mail' )/
+            %input.default( name='subs_mail' type='text' value='Your e-mail' )/
           %li#twitter
-            %input.default( type='text' value='Your twitter name' )/
+            %input.default( name='subs_twit' type='text' value='Your twitter name' )/
           %li
             %input( type='submit' value='Subcribe' )/
 
