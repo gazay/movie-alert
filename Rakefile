@@ -18,7 +18,7 @@ end
 class Net::SSH::Connection::Session
   alias :original_exec! :exec!
   def exec!(command)
-    original_exec! "cd #{remote_project}; #{command}"
+    original_exec! "cd #{remote_path}; #{command}"
   end
 end
 
