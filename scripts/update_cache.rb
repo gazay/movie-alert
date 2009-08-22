@@ -13,3 +13,5 @@ months = Movie.all.to_a.inject([]) { |all, movie|
 }.uniq!
 
 p months
+
+#Cache.insert 'release_month' => month

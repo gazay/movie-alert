@@ -36,13 +36,13 @@ ids.each do |id|
   
   i += 1
   puts "#{i}/#{j}/#{all} #{id} #{movie.title}"
-  puts "  Director: #{movie.director}"
-  puts "  Members:  #{movie.cast_members.join(', ')}"
-  puts "  Genres:   #{movie.genres.join(', ')}"
-  puts "  Poster:   #{movie.poster}"
-  puts "  Year:     #{movie.year}"
-  puts "  Release:  #{release_date}"
-  puts "  Plot:     #{plot}"
+  puts "    Director: #{movie.director}"
+  puts "    Members:  #{movie.cast_members.join(', ')}"
+  puts "    Genres:   #{movie.genres.join(', ')}"
+  puts "    Poster:   #{movie.poster}"
+  puts "    Year:     #{movie.year}"
+  puts "    Release:  #{release_date}"
+  puts "    Plot:     #{plot}"
 
   genres = movie.genres.map {|it| Genres.insert :name => it }
   actors = movie.cast_members.map {|it| Actors.insert :name => it }  
