@@ -6,14 +6,22 @@ require 'haml'
 require 'database'
 require 'scripts/subscription'
 
-get '/' do
+get /^\/(index.(html|part))?$/ do
+  format = params['captures'] ? params['captures'][1] : 'html'
+  
   @release_months = Cache.find_one(:name => 'release_months')['value']
-  if params.empty?
+  query = params_to_query(params)
+  if query.empty?
     @movies = [] #TODO
   else
-    @movies = Movies.find(params_to_query(params))
+    @movies = Movies.find(query, {:limit => 1000})
   end
-  haml :index
+  
+  if 'part' == format
+    haml :index, :layout => false
+  else
+    haml :index
+  end
 end
 
 get '/subscribe' do
@@ -38,6 +46,7 @@ get '/suggest/director' do
 end
 
 def params_to_query(params)
+  params.delete('captures')
   Hash[params.to_a.map do |key, value|
     case key
     when 'year'

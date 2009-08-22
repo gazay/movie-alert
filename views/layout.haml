@@ -10,11 +10,6 @@
     #header
       %form#filters( action='/' )
         %ul
-          %li.used
-            %select( id='type' )
-              %option( value='dvd' ) DVD
-              %option( value='cinema' ) Cinema
-              %option( value='torrents' ) Torrents
           %li
             %input.default( type='text' name='title' value='Title' )/
           %li
@@ -22,7 +17,7 @@
           %li
             %input.default( type='text' name='director' value='Director' )/
           %li
-            %select.default( id='movie_genre' )
+            %select.default( name='genre' )
               %option.default Genre
               - Genres.find.each do |genre|
                 %option= genre['name'].capitalize
