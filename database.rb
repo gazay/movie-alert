@@ -7,7 +7,7 @@ class Movie < MongoRecord::Base
 
   fields :year, :title, :poster, :plot, :genres, :director, :cast_members
   index :title, :director, :cast_members, :genres
-  
+
   def to_s
     "ID: #{id}, title: #{title}, year: #{year}"
   end
