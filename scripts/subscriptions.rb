@@ -18,6 +18,6 @@ module Subscriptions
   end
   
   def find_movies_by_subs(targets)
-    Movie.find(targets, )
+    Movie.find(targets).where(this.release_date >= Date.today)
   end
 end
