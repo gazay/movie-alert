@@ -53,7 +53,7 @@ ids.each do |id|
     exists ? exists : Genres.insert(:name => i)
   end
   exists = Directors.find_one(:name => movie.director)
-  directot = exists ? exists : Directors.insert(:name => i)
+  director = exists ? exists : Directors.insert(:name => i)
   
   Movies.insert 'imdb_id'      => id,
                 'title'        => movie.title,
