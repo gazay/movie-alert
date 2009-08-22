@@ -4,7 +4,7 @@ require 'net/scp'
 Settings = {
   :user => 'admin',
   :ip   => '97.107.138.149',
-  :name => 'movies-alert'
+  :name => 'movie-alert'
 }
 
 def remote_path 
