@@ -29,9 +29,7 @@ ids.each do |id|
     plot = ''
   end
   
-  release_date = nil
-  date = movie.release_date
-  release_date.to_s if date
+  release_date = movie.release_date && movie.release_date.to_s
   
   i += 1
   puts "#{j}/#{all} #{i} #{id} #{movie.title}"
