@@ -37,10 +37,10 @@ ids.each do |id|
   puts "  Members:  #{movie.cast_members.join(', ')}"
   puts "  Genres:   #{movie.genres.join(', ')}"
   puts "  Poster:   #{movie.poster}"
-  puts "  Year:     #{year}"
+  puts "  Year:     #{movie.year}"
   puts "  Release:  #{release_date}"
   puts "  Plot:     #{plot}"
-  
+
   genres = movie.genres.map {|it| Genre.create :name => it }
   actors = movie.cast_members.map {|it| Actor.create :name => it }  
   director = Director.create :name => movie.director
@@ -52,5 +52,6 @@ ids.each do |id|
                'genres'       => genres,
                'poster'       => movie.poster,
                'plot'         => plot,
-               'release_date' => release_date
+               'release_date' => release_date,
+               'year'         => movie.year
 end
