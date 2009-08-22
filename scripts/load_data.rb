@@ -41,17 +41,17 @@ ids.each do |id|
   puts "  Release:  #{release_date}"
   puts "  Plot:     #{plot}"
 
-  genres = movie.genres.map {|it| Genre.create :name => it }
-  actors = movie.cast_members.map {|it| Actor.create :name => it }  
-  director = Director.create :name => movie.director
+  genres = movie.genres.map {|it| Genres.insert :name => it }
+  actors = movie.cast_members.map {|it| Actors.insert :name => it }  
+  director = Directors.insert :name => movie.director
   
-  Movie.create 'imdb_id'      => id,
-               'title'        => movie.title,
-               'director'     => director,
-               'actors'       => actors,
-               'genres'       => genres,
-               'poster'       => movie.poster,
-               'plot'         => plot,
-               'release_date' => release_date,
-               'year'         => movie.year
+  Movies.insert 'imdb_id'      => id,
+                'title'        => movie.title,
+                'director'     => director,
+                'actors'       => actors,
+                'genres'       => genres,
+                'poster'       => movie.poster,
+                'plot'         => plot,
+                'release_date' => release_date,
+                'year'         => movie.year
 end
