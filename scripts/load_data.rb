@@ -44,16 +44,16 @@ ids.each do |id|
   puts "    Release:  #{release_date}"
   puts "    Plot:     #{plot}"
   
-  genres = movie.genres.map do |i|
-    exists = Genres.find_one(:name => i)
-    exists ? exists : Genres.insert(:name => i)
+  genres = movie.genres.map do |it|
+    exists = Genres.find_one(:name => it)
+    exists ? exists : Genres.insert(:name => it)
   end
-  actors = movie.cast_members.map do |i|
-    exists = Actors.find_one(:name => i)
-    exists ? exists : Genres.insert(:name => i)
+  actors = movie.cast_members.map do |it|
+    exists = Actors.find_one(:name => it)
+    exists ? exists : Genres.insert(:name => it)
   end
   exists = Directors.find_one(:name => movie.director)
-  director = exists ? exists : Directors.insert(:name => i)
+  director = exists ? exists : Directors.insert(:name => movie.director)
   
   Movies.insert 'imdb_id'      => id,
                 'title'        => movie.title,
