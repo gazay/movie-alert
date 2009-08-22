@@ -42,9 +42,8 @@
         %li
           %a( href="/?year=#{year}" )= year
           %ul
-            %li
-              - months.each do |month|
-                - if Date.today.year.to_s != year or Date.today.month <= month 
-                  %li
-                    %a( href='/?release_date=#{year}-#{month}' )
-                      = Date::MONTHNAMES[month]
+            - months.each do |month|
+              - if Date.today.year.to_s != year or Date.today.month <= month 
+                %li
+                  %a( href='/?release_date=#{year}-#{month}' )
+                    = Date::MONTHNAMES[month]

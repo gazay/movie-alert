@@ -22,15 +22,14 @@ get '/subscribe' do
   redirect '/'
 end
 
-%w{actor director}.each do |type|
-  get "/suggest/actor" do
-    reg = params['q']
-    Actors.find({:name => /^#{reg}/i}, {:limit => params['limit'].to_i}).map{|i| i['name']}.to_a.join("\n")
-  end
-  get "/suggest/director" do
-    reg = params['q']
-    Directors.find({:name => /^#{reg}/i}, {:limit => params['limit'].to_i}).map{|i| i['name']}.to_a.join("\n")
-  end
+get '/suggest/actor' do
+  Actors.find({:name => /^#{params['q']}/i},
+      {:limit => params['limit'].to_i}).map{|i| i['name']}.to_a.join("\n")
+end
+
+get '/suggest/director' do
+  Directors.find({:name => /^#{params['q']}/i},
+      {:limit => params['limit'].to_i}).map{|i| i['name']}.to_a.join("\n")
 end
 
 def params_to_query(params)
