@@ -44,7 +44,7 @@ File.readlines(ids_file).each do |id|
   puts "  #{plot}"
   puts "  #{release_date}"
   
-  movies.insert('imdb_id'           => id,
+  movies.insert('imdb_id'      => id,
                 'title'        => movie.title,
                 'director'     => movie.director,
                 'cast_members' => movie.cast_members,
