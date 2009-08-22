@@ -23,6 +23,8 @@ end
 
 %w{actor director}.each do |type|
   get "/suggest/#{type}" do
-    #TODO
+    params['q']
+    params['limit']
+    "A\nB\n"
   end
 end
