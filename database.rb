@@ -9,20 +9,21 @@ class Movie < MongoRecord::Base
   fields :imdb_id, :year, :title, :poster, :plot, :genres, :director, 
          :cast_members, :release_date
   index [:imdb_id, :title, :director, :cast_members, :genres]
-
-  def to_s
-    "ID: #{id}, title: #{title}, release: #{release_date}"
-  end
 end
 
+class Genre < MongoRecord::Base
+  collection_name :genres
+  fields :value; index :value, true
+end
 
-genres_cache = File.join(File.dirname(__FILE__), '.cache', 'genres.list')
-FileUtils.mkdir_p File.dirname(genres_cache)
-if File.exists? genres_cache
-  Genres = File.readlines(genres_cache)
-else
-  Genres = Movie.all.inject([]) { |all, i| all + i['genres'] }.uniq!
-  File.open(genres_cache, 'w') { |io| io.write Genres.join("\n") }
+class Actor < MongoRecord::Base
+  collection_name :actors
+  fields :value; index :value, true
+end
+
+class Director < MongoRecord::Base
+  collection_name :directors
+  fields :value; index :value, true
 end
 
 class Subscription < MongoRecord::Base
