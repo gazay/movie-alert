@@ -6,6 +6,7 @@ require 'haml'
 require 'database'
 
 get '/' do
+  @movies = []
   haml :index
 end
 

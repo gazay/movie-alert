@@ -5,8 +5,9 @@ MongoRecord::Base.connection = Mongo::Connection.new('97.107.138.149').db('imdb_
 class Movie < MongoRecord::Base
   collection_name :movies
 
-  fields :year, :title, :poster, :plot, :genres, :director, :cast_members
-  index [:title, :director, :cast_members, :genres]
+  fields :imdb_id, :year, :title, :poster, :plot, :genres, :director, 
+         :cast_members
+  index [:imdb_id, :title, :director, :cast_members, :genres]
 
   def to_s
     "ID: #{id}, title: #{title}, year: #{year}"
