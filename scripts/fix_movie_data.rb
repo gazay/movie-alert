@@ -10,7 +10,11 @@ all = Movie.all.count
 
 i = 0
 Movie.all.each do |movie|
-  data = ImdbMovie.new(movie.imdb_id)
+  begin
+    data = ImdbMovie.new(movie.imdb_id)
+  rescue
+    retry
+  end
   data.get_data
   i += 1
   puts "#{i}/#{all} #{movie.imdb_id} #{data.title} #{data.year} #{data.release_date}"
