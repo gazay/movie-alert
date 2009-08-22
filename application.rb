@@ -7,8 +7,8 @@ require 'database'
 require 'scripts/subscription'
 
 get '/' do
-  @movies = []
   @release_months = Cache.find_one(:name => 'release_months')['value']
+  @movies = Movies.find(params_to_query(params))
   haml :index
 end
 
@@ -28,4 +28,16 @@ end
     params['limit']
     "A\nB\n"
   end
+end
+
+def params_to_query(params)
+  Hash[params.to_a.map do |key, value|
+    case key
+    when 'year'
+      value = value.to_i
+    when 'release_date'
+      value = /^#{value}/
+    end
+    [key, value]
+  end]
 end

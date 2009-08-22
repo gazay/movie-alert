@@ -1,3 +1,4 @@
 %ul#movies
   - @movies.each do |movie|
-    %li( id="movie-#{movie}" )
+    %li( id="movie-#{movie['imdb_id']}" )
+      =movie['title']
