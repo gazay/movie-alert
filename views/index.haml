@@ -22,7 +22,7 @@
           %li
             %select( id='movie_genre' )
               %option Genre
-              - GENRES.each do |genre|
+              - Genres.each do |genre|
                 %option= genre.capitalize
       %ul#subscription
         %li#email
