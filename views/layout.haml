@@ -23,7 +23,7 @@
               %option.default Genre
               - Genres.each do |genre|
                 %option= genre.capitalize
-      %form#subscription( action='/' )
+      %form#subscriptions( action='/' )
         %ul
           %li#email
             %input.default( type='text' value='Your e-mail' )/

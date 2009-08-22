@@ -11,20 +11,23 @@ input, select
     text-align: center
     max-width: 100%
     li
-      padding: 0.5ex 0.3em 0.5ex 0.3em
+      padding: 0.9ex 0.3em 0.5ex 0.3em
       +border-bottom-left-radius(0.6ex)
       +border-bottom-right-radius(0.6ex)
       +inline-block
-      padding-top: 0.9ex
       input[type='text']
         width: 8em
   #filters
     li.used
       background: #729fcf
-  #subscription
+  #subscriptions
+    margin-left: -2em
     li
+      padding-top: 0.5ex
       input[type='text']
-        width: 9em
+        width: 9.5em
+      input[type='submit']
+        width: 5.5em
 
 .default
   color: gray
