@@ -1,12 +1,9 @@
 #!/usr/bin/env ruby
 
 require 'rubygems'
-require 'mongo'
-
+require 'database'
 gem 'porras-imdb'
 require 'imdb'
-
-movies = Mongo::Connection.new.db('imdb').collection('movies')
 
 ids_file = ARGV.first
 ids = File.readlines(ids_file)
@@ -46,13 +43,16 @@ ids.each do |id|
   puts "  Release:  #{release_date}"
   puts "  #{plot}"
   
-  movies.insert('imdb_id'      => id,
-                'title'        => movie.title,
-                'director'     => movie.director,
-                'cast_members' => movie.cast_members,
-                'genres'       => movie.genres,
-                'poster'       => movie.poster,
-                'plot'         => plot,
-                'year'         => movie.year,
-                'release_date' => release_date)
+  genres = movie.genres.map {|it| Genre.create :name => it }
+  actors = movie.cast_members.map {|it| Actor.create :name => it }  
+  director = Director.create :name => movie.director
+  
+  Movie.create 'imdb_id'      => id,
+               'title'        => movie.title,
+               'director'     => director,
+               'actors'       => actors,
+               'genres'       => genres,
+               'poster'       => movie.poster,
+               'plot'         => plot,
+               'release_date' => release_date
 end
