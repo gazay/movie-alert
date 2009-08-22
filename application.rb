@@ -28,12 +28,12 @@ end
 
 get '/suggest/actor' do
   Actors.find({:name => /#{params['q']}/i},
-      {:limit => params['limit'].to_i}).map{|i| i['name']}.to_a.join("\n")
+      {:limit => params['limit'].to_i}).to_a.map { |i| i['name']}.join("\n")
 end
 
 get '/suggest/director' do
   Directors.find({:name => /#{params['q']}/i},
-      {:limit => params['limit'].to_i}).map{|i| i['name']}.to_a.join("\n")
+      {:limit => params['limit'].to_i}).to_a.map { |i| i['name']}.join("\n")
 end
 
 def params_to_query(params)
@@ -43,6 +43,8 @@ def params_to_query(params)
       value = value.to_i
     when 'release_date'
       value = /^#{value}/
+    when 'title'
+      value = RegExp.new(value)
     end
     [key, value]
   end]

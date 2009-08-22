@@ -24,7 +24,7 @@ a:focus, a:hover
       height: 3.5ex
       line-height: 3.5ex
       input[type='text']
-        width: 8em
+        width= !filters_width
   #filters
     li.used
       background = !color
@@ -51,6 +51,8 @@ a:focus, a:hover
 
 .ac_results
   ul
+    margin-left: 2px
+    width= !filters_width
     li
       background: white
       display: block

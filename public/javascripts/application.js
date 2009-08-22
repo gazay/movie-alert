@@ -2,14 +2,14 @@ jQuery(function($) {
     $('input.default').focus(function() {
         var el = $(this)
         if (el.hasClass('default')) {
-            el.data('defaultValue', el.val()).removeClass('default').val('').
-                    parents('li').addClass('used')
+            el.data('defaultValue', el.val()).removeClass('default').val('')
+//                    parents('li').addClass('used')
         }
     }).blur(function() {
         var el = $(this)
         if ('' == el.val()) {
-            el.addClass('default').val(el.data('defaultValue')).
-                    parents('li').removeClass('used')
+            el.addClass('default').val(el.data('defaultValue'))
+//                    parents('li').removeClass('used')
         }
     })
     
