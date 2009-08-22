@@ -15,17 +15,17 @@ end
 
 class Genre < MongoRecord::Base
   collection_name :genres
-  fields :value; index :value, true
+  fields :name; index :value, true
 end
 
 class Actor < MongoRecord::Base
   collection_name :actors
-  fields :value; index :value, true
+  fields :name; index :value, true
 end
 
 class Director < MongoRecord::Base
   collection_name :directors
-  fields :value; index :value, true
+  fields :name; index :value, true
 end
 
 class Subscription < MongoRecord::Base
