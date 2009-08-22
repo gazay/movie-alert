@@ -6,22 +6,28 @@ module Subs
   end
   
   def add_email(targets, new_mail)
-    s = Subscription.find(:targets => targets)
-    if s
-      s.emails << new_email
-      s.save
-    else
-      add_sub(targets, [new_mail], [])
+    if new_mail.match /^[a-zA-Z0-9]+
+      ([_.-]?[a-zA-Z0-9]+)?@[a-zA-Z0-9]+([_-]?[a-zA-Z0-9]+)*([.]{1})
+      [a-zA-Z0-9]+([.]?[a-zA-Z0-9]+)*$ /
+      s = Subscription.find(:targets => targets)
+      if s
+        s.emails << new_email
+        s.save
+      else
+        add_sub(targets, [new_mail], [])
+      end
     end
   end
   
   def add_twit(targets, new_twit)
-    s = Subscription.find(:targets => targets)
-    if s
-      s.twits << new_twit
-      s.save
-    else
-      add_sub(targets, [], [twit])
+    if new_twit.match /^[a-zA-Z0-9_]+$/
+      s = Subscription.find(:targets => targets)
+      if s
+        s.twits << new_twit
+        s.save
+      else
+        add_sub(targets, [], [twit])
+      end
     end
   end
   
