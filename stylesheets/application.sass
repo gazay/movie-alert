@@ -6,6 +6,10 @@ input, select
   +sans-serif
   font-size: 100%
 
+a:focus, a:hover
+  background-color= !color
+  color: white
+
 #header
   ul
     text-align: center
@@ -19,7 +23,7 @@ input, select
         width: 8em
   #filters
     li.used
-      background: #729fcf
+      background = !color
   #subscriptions
     margin-left: -2em
     li
@@ -37,3 +41,15 @@ select.default
     color: black
   option.default
     color: gray
+
+#dates
+  position: absolute
+  margin-top: 2ex
+  left: 0.8em
+  a
+    text-decoration: none
+    display: block
+    padding: 0.4ex 0
+  ul li a
+    padding-left: 1em
+    font-size: 85%
