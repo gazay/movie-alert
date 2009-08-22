@@ -1,4 +1,5 @@
 require 'mongo_record'
+require 'fileutils'
 
 MongoRecord::Base.connection = Mongo::Connection.new('97.107.138.149').db('imdb')
 
@@ -14,7 +15,9 @@ class Movie < MongoRecord::Base
   end
 end
 
+
 genres_cache = File.join(File.dirname(__FILE__), '.cache', 'genres.list')
+FileUtils.mkdir_p File.dirname(genres_cache)
 if File.exists? genres_cache
   Genres = File.readlines(genres_cache)
 else
