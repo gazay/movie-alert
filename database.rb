@@ -14,3 +14,13 @@ class Movie < MongoRecord::Base
 end
 
 Genres = Movie.all.inject([]) { |all, i| all + i['genres'] }.uniq!
+
+class Subscription < MongoRecord::Base
+  collection_name :subscriptions
+  
+  fields :sub_targets, :emails, :twits
+  
+  def to_s
+    "Target: #{sub_targets.to_a.join('/')}, mails count: #{emails.to_a.size}, twits count: #{twits.to_a.size}"
+  end
+end
