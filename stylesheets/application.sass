@@ -9,14 +9,19 @@ input, select
 #header
   ul
     text-align: center
-    margin-top: 1ex
     max-width: 100%
     li
+      padding: 0.5ex 0.3em 0.5ex 0.3em
+      +border-bottom-left-radius(0.6ex)
+      +border-bottom-right-radius(0.6ex)
       +inline-block
-      padding-left: 0.7em
-  #filters li
-    input[type='text']
-      width: 8.4em
+  #filters
+    li
+      padding-top: 0.9ex
+      input[type='text']
+        width: 8.4em
+    li.used
+      background: #729fcf
   #subscription
     margin-left: -1em
     li
