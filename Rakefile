@@ -8,7 +8,7 @@ Settings = {
 }
 
 def remote_path 
-  "/var/sinatra/#{Config[:name]}"
+  "/var/sinatra/#{Settings[:name]}"
 end
 
 def ssh(&block)
