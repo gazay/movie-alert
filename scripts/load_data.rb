@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
-require 'rubygems'
-require 'database'
+require File.join(File.dirname(__FILE__), '..', 'database')
+
 gem 'porras-imdb'
 require 'imdb'
 
