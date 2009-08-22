@@ -1,6 +1,8 @@
 require '../database.rb'
 
 module Subscriptions
+  attr_accessor :movies_with_release_date
+  
   def add_sub(targets, emails, twits)
     Subscription.create(:targets => targets, :emails => emails, :twits => twits)
   end
@@ -18,6 +20,11 @@ module Subscriptions
   end
   
   def find_movies_by_subs(targets)
-    Movie.find(targets).where(this.release_date >= Date.today)
+    movies_with_release_date ||= Movie.find(targets, :where => 'this.release_date != null')
+    
+  end
+  
+  def clear
+    movies_with_release_date = nil
   end
 end
