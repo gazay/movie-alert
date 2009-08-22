@@ -4,7 +4,7 @@ require 'rubygems'
 require 'sinatra'
 require 'haml'
 require 'database'
-require 'scripts/subs'
+require 'scripts/subscription'
 
 get '/' do
   @movies = []
@@ -16,8 +16,9 @@ get '/subscribe' do
   targets['title'] = params[:movie_title] if params[:movie_title]
   targets['actor'] = params[:movie_actor] if params[:movie_actor]
   targets['director'] = params[:movie_director] if params[:movie_director]
-  Subs.add_email(targets, params[:subs_mail])
-  Subs.add_twit(targets, params[:subs_mail]) 
+  Subscription.add_email(targets, params[:subs_mail])
+  Subscription.add_twit(targets, params[:subs_twit]) 
+  redirect '/'
 end
 
 %w{actor director}.each do |type|
