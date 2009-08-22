@@ -1,5 +1,3 @@
-require '../database.rb'
-
 module Subs
   attr_accessor :movies_with_release_date
   
