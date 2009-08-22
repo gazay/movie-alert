@@ -32,7 +32,7 @@ ids.each do |id|
   release_date = movie.release_date && movie.release_date.to_s
   
   i += 1
-  puts "#{j}/#{all} #{i} #{id} #{movie.title}"
+  puts "#{i}/#{j}/#{all} #{id} #{movie.title}"
   puts "  Director: #{movie.director}"
   puts "  Members:  #{movie.cast_members.join(', ')}"
   puts "  Genres:   #{movie.genres.join(', ')}"
