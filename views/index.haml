@@ -5,5 +5,58 @@
     %link( rel='stylesheet' type='text/css' href='/stylesheets/application.css' )
     %script( type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js' )
   %body
+    #header
+      %form#filters
+        %ul
+          %li
+            %select( id='type' )
+              %option( value='dvd' ) DVD
+              %option( value='cinema' ) Cinema
+              %option( value='torrents' ) Torrents
+          %li
+            %input( type='text' id='movie_title' value='Title' )/
+          %li
+            %input( type='text' id='movie_actor' value='Actor' )/
+          %li
+            %input( type='text' id='movie_director' value='Director' )/
+          %li
+            %select( id='movie_genre' )
+              %option Genre
+              %option Action
+              %option Adventure
+              %option Animation
+              %option Biography
+              %option Comedy
+              %option Crime
+              %option Documentary
+              %option Drama
+              %option Family
+              %option Fantasy
+              %option Film-Noir
+              %option Game-Show
+              %option History
+              %option Horror
+              %option Music
+              %option Musical
+              %option Mystery
+              %option News
+              %option Reality-TV
+              %option Romance
+              %option Sci-Fi
+              %option Short
+              %option Sport
+              %option Talk-Show
+              %option Thriller
+              %option War
+              %option Western
+      %ul#subscription
+        %li#email
+          %form
+            %input.default( type='text' id='email' value='Your e-mail' )/
+            %input( type='submit' value='Subcribe' )/
+        %li#twitter
+          %form
+            %input.default( type='text' id='twitter' value='Your twitter name' )/
+            %input( type='submit' value='Subcribe' )/
     
     %script( type='text/javascript' src='/javascripts/application.js' )
