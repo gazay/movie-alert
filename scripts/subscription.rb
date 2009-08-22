@@ -9,9 +9,12 @@ module Subscription
   end
   
   def add_email(targets, new_mail)    
+    puts targets.inspect
+    puts new_mail
     if new_mail.match /^[a-zA-Z0-9]+
       ([_.-]?[a-zA-Z0-9]+)?@[a-zA-Z0-9]+([_-]?[a-zA-Z0-9]+)*([.]{1})
       [a-zA-Z0-9]+([.]?[a-zA-Z0-9]+)*$/
+      puts '!!!!'
       s = Subs.find(:targets)
       if s
         s.emails << new_email
