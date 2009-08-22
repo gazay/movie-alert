@@ -21,7 +21,10 @@ ids.each do |id|
   
   j += 1
   
-  next unless movie.director
+  unless movie.director
+    puts "--/#{j}/#{all}"
+    next
+  end
   
   if movie.plot
     plot = movie.plot.sub(/\s\|$/, '').gsub(/<[^<]+>/, '')
