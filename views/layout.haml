@@ -19,8 +19,8 @@
           %li
             %input.default( type='text' id='movie_director' value='Director' )/
           %li
-            %select( id='movie_genre' )
-              %option Genre
+            %select.default( id='movie_genre' )
+              %option.default Genre
               - Genres.each do |genre|
                 %option= genre.capitalize
       %form#subscription( action='/' )

@@ -1,5 +1,5 @@
 jQuery(function($) {
-    $('.default').focus(function() {
+    $('input.default').focus(function() {
         var el = $(this)
         if (el.hasClass('default')) {
             el.data('defaultValue', el.val()).removeClass('default').val('').
@@ -16,9 +16,9 @@ jQuery(function($) {
     $('#movie_genre').change(function() {
         var el = $(this)
         if (0 == el.attr('selectedIndex')) {
-            el.parents('li').removeClass('used')
+            el.addClass('default').parents('li').removeClass('used')
         } else {
-            el.parents('li').addClass('used')
+            el.removeClass('default').parents('li').addClass('used')
         }
     })
 })
