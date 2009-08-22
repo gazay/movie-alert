@@ -39,11 +39,11 @@
     %ul#dates
       - (0..3).map { |i| Date.today.year + i }.each do |year|
         %li
-          %a( href="/year:#{year}" )= year
+          %a( href="/?year=#{year}" )= year
           %ul
             %li
             - (1..12).each do |month|
               - if Date.today.year != year or Date.today.month <= month
                 %li
-                  %a( href='/release_date:#{year}-#{month}' )
+                  %a( href='/?release_date=#{year}-#{month}' )
                     = Date::MONTHNAMES[month]
