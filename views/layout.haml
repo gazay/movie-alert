@@ -38,13 +38,13 @@
     = yield
     
     %ul#dates
-      - (0..3).map { |i| Date.today.year + i }.each do |year|
+      - @release_months.each_pair do |year, months|
         %li
           %a( href="/?year=#{year}" )= year
           %ul
             %li
-            - (1..12).each do |month|
-              - if Date.today.year != year or Date.today.month <= month
-                %li
-                  %a( href='/?release_date=#{year}-#{month}' )
-                    = Date::MONTHNAMES[month]
+              - months.each do |month|
+                - if Date.today.year != year or Date.today.month <= month 
+                  %li
+                    %a( href='/?release_date=#{year}-#{month}' )
+                      = Date::MONTHNAMES[month]
