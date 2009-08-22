@@ -7,11 +7,7 @@ input, select
   font-size: 100%
 strong
   font-weight: bold
-
-a:focus, a:hover
-  background-color= !color
-  color: white
-
+  
 #header
   ul
     text-align: center
@@ -25,9 +21,6 @@ a:focus, a:hover
       line-height: 3.5ex
       input[type='text']
         width= !filters_width
-  #filters
-    li.used
-      background = !color
   #subscriptions
     margin-left: -2em
     li
@@ -35,19 +28,23 @@ a:focus, a:hover
       input[type='text']
         width: 9.5em
       input[type='submit']
-        width: 5.5em
+        width: 5.5e
 
 #dates
   position: absolute
   top: 10ex
   right: 1em
-  a
-    text-decoration: none
-    display: block
+  li a
     padding: 0.4ex 0.3em
+    display: block
+    text-decoration: none
   ul li a
     padding-left: 1.3em
     font-size: 85%
+
+li.used, a.used
+  background = !color
+  color: white
 
 .ac_results
   ul
