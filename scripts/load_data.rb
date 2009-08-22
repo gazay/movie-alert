@@ -9,15 +9,18 @@ require 'imdb'
 movies = Mongo::Connection.new.db('imdb').collection('movies')
 
 ids_file = ARGV.first
+ids = File.readlines(ids_file)
 
 i = 0
 j = 0
+all = ids.length - 1
 
-File.readlines(ids_file).each do |id|
+ids.each do |id|
   id = id.strip
   next if id.empty?
   
   movie = ImdbMovie.new(id)
+  movie.get_data
   
   j += 1
   
@@ -31,12 +34,10 @@ File.readlines(ids_file).each do |id|
   
   release_date = nil
   date = movie.release_date
-  if date
-    release_date = Time.utc(date.year, date.mon, date.mday)
-  end
+  release_date.to_s if date
   
   i += 1
-  puts "#{j} #{i} #{id} #{movie.title}"
+  puts "#{j}/#{all} #{i} #{id} #{movie.title}"
   puts "  #{movie.director}"
   puts "  #{movie.cast_members.join(', ')}"
   puts "  #{movie.genres.join(', ')}"

@@ -1,3 +1,4 @@
+require 'rubygems'
 require 'mongo_record'
 require 'fileutils'
 
