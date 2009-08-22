@@ -23,10 +23,13 @@ get '/subscribe' do
 end
 
 %w{actor director}.each do |type|
-  get "/suggest/#{type}" do
-    params['q']
-    params['limit']
-    "A\nB\n"
+  get "/suggest/actor" do
+    reg = params['q']
+    Actors.find({:name => /^#{reg}/i}, {:limit => params['limit'].to_i}).map{|i| i['name']}.to_a.join("\n")
+  end
+  get "/suggest/director" do
+    reg = params['q']
+    Directors.find({:name => /^#{reg}/i}, {:limit => params['limit'].to_i}).map{|i| i['name']}.to_a.join("\n")
   end
 end
 
