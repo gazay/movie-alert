@@ -3,6 +3,11 @@
 require 'rubygems'
 require 'sinatra'
 require 'haml'
+require 'mongo'
+
+host = ENV['MONGO_RUBY_DRIVER_HOST'] || 'localhost'
+port = ENV['MONGO_RUBY_DRIVER_PORT'] || XGen::Mongo::Driver::Mongo::DEFAULT_PORT
+db = XGen::Mongo::Driver::Mongo.new(host, port).db('imdb_data')
 
 get '/' do
   haml :index
@@ -14,6 +19,6 @@ end
   end
 end
 
-get '/movies/' do
+get '/movies' do
   #TODO
 end
