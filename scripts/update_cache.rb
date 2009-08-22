@@ -2,7 +2,7 @@
 
 require File.join(File.dirname(__FILE__), '..', 'database')
 
-Cache.drop
+Cache.clear
 
 count = Movies.find.count
 i = 0
@@ -15,4 +15,4 @@ end
 months.uniq!.sort!
 
 
-Cache.insert 'release_month' => months
+Cache.insert :name => 'release_month', :value => months
