@@ -8,6 +8,7 @@ require 'scripts/subscription'
 
 get '/' do
   @movies = []
+  @release_months = Cache.find_one(:name => 'release_months')['value']
   haml :index
 end
 

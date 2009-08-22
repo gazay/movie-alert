@@ -6,15 +6,21 @@ Cache.clear
 
 count = Movies.find.count
 i = 0
-months = []
+dates = []
+last_year = nil
 Movies.find.each do |movie|
   i += 1
   puts "#{i}/#{count}"
   if movie['release_date']
-    months << [movie['release_date'][0..3], movie['release_date'][5..6]]
+    dates << [movie['release_date'][0..3], movie['release_date'][5..6]]
   end
 end
-months.uniq!.sort! { |a, b| a[0] + a[1] <=> b[0] + b[1] }
+dates.uniq!.sort! { |a, b| a[0] + a[1] <=> b[0] + b[1] }
 
+months = {}
+dates.each do |year, month|
+  months[year] = [] unless months.has_key? year
+  months[year] << month
+end
 
 Cache.insert :name => 'release_months', :value => months
