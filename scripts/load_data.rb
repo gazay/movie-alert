@@ -29,9 +29,7 @@ ids.each do |id|
     plot = ''
   end
   
-  release_date = nil
-  date = movie.release_date
-  release_date.to_s if date
+  release_date = movie.release_date && movie.release_date.to_s
   
   i += 1
   puts "#{j}/#{all} #{i} #{id} #{movie.title}"
@@ -41,7 +39,7 @@ ids.each do |id|
   puts "  Poster:   #{movie.poster}"
   puts "  Year:     #{year}"
   puts "  Release:  #{release_date}"
-  puts "  #{plot}"
+  puts "  Plot:     #{plot}"
   
   genres = movie.genres.map {|it| Genre.create :name => it }
   actors = movie.cast_members.map {|it| Actor.create :name => it }  
