@@ -4,6 +4,8 @@ require 'fileutils'
 
 MongoRecord::Base.connection = Mongo::Connection.new('97.107.138.149').db('imdb')
 
+Cache = Mongo::Connection.new('97.107.138.149').db('imdb').collection('cache')
+
 class Movie < MongoRecord::Base
   collection_name :movies
 
