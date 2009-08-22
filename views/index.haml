@@ -22,33 +22,8 @@
           %li
             %select( id='movie_genre' )
               %option Genre
-              %option Action
-              %option Adventure
-              %option Animation
-              %option Biography
-              %option Comedy
-              %option Crime
-              %option Documentary
-              %option Drama
-              %option Family
-              %option Fantasy
-              %option Film-Noir
-              %option Game-Show
-              %option History
-              %option Horror
-              %option Music
-              %option Musical
-              %option Mystery
-              %option News
-              %option Reality-TV
-              %option Romance
-              %option Sci-Fi
-              %option Short
-              %option Sport
-              %option Talk-Show
-              %option Thriller
-              %option War
-              %option Western
+              - GENRES.each do |genre|
+                %option= genre.capitalize
       %ul#subscription
         %li#email
           %form( action='/' )

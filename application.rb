@@ -5,9 +5,12 @@ require 'sinatra'
 require 'haml'
 require 'mongo'
 
-host = ENV['MONGO_RUBY_DRIVER_HOST'] || 'localhost'
-port = ENV['MONGO_RUBY_DRIVER_PORT'] || XGen::Mongo::Driver::Mongo::DEFAULT_PORT
-db = XGen::Mongo::Driver::Mongo.new(host, port).db('imdb_data')
+HOST = ENV['MONGO_RUBY_DRIVER_HOST'] || 'localhost'
+POST = ENV['MONGO_RUBY_DRIVER_PORT'] || XGen::Mongo::Driver::Mongo::DEFAULT_PORT
+DB     = XGen::Mongo::Driver::Mongo.new(HOST, POST).db('imdb_data')
+MOVIES = DB.collection('movies')
+
+GENRES = MOVIES.find.to_a.inject([]) { |all, i| all + i['genres'] }.uniq!
 
 get '/' do
   haml :index
