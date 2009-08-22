@@ -32,6 +32,7 @@ get '/suggest/actor' do
 end
 
 get '/suggest/director' do
+  puts params['q']
   Directors.find({:name => /#{params['q']}/i},
       {:limit => params['limit'].to_i}).to_a.map { |i| i['name']}.join("\n")
 end
@@ -45,6 +46,17 @@ def params_to_query(params)
       value = /^#{value}/
     when 'title'
       value = RegExp.new(value)
+    when 'genre'
+      entry = Genres.find_one(:name => value)
+      value = entry
+      key = 'genres'
+    when 'actor'
+      entry = Actors.find_one(:name => value)
+      value = entry
+      key = 'actors'
+    when 'director'
+      entry = Directors.find_one(:name => value)
+      value = entry
     end
     [key, value]
   end]
