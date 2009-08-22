@@ -23,8 +23,8 @@
           %li
             %select.default( id='movie_genre' )
               %option.default Genre
-              - Genre.all.each do |genre|
-                %option= genre.name.capitalize
+              - Genres.find.each do |genre|
+                %option= genre['name']capitalize
       %form#subscriptions( action='/subscribe' )
         %ul
           %li#email
