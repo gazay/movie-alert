@@ -48,7 +48,7 @@ ids.each do |id|
     exists = Genres.find_one(:name => i)
     exists ? exists : Genres.insert(:name => i)
   end
-  actors = movie.actors.map do |i|
+  actors = movie.cast_members.map do |i|
     exists = Actors.find_one(:name => i)
     exists ? exists : Genres.insert(:name => i)
   end
