@@ -34,6 +34,13 @@ jQuery(function($) {
             el.parents('li').addClass('used')
             data[el.attr('name')] = el.val()
         })
+        $('#dates .used').each(function() {
+            var query = $(this).attr('href').substring(2)
+            if ('' != query) {
+                query = query.split('=')
+                data[query[0]] = query[1]
+            }
+        })
         
         $.get('/index.part', data, function(data) {
             $('#movies').empty().removeClass('loaded').append(data)
@@ -42,5 +49,12 @@ jQuery(function($) {
     
     $('#filters select, #filters input').change(function() {
         reload_movies()
+    })
+    
+    $('#dates a').click(function() {
+        $('#dates .used').removeClass('used')
+        $(this).addClass('used')
+        reload_movies()
+        return false
     })
 })

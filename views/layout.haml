@@ -34,12 +34,14 @@
       = yield
     
     %ul#dates
+      %li
+        %a.year.used( href='/' ) All
       - @release_months.each_pair do |year, months|
         %li
-          %a( href="/?year=#{year}" )= year
+          %a.year( href="/?year=#{year}" )= year
           %ul
             - months.each do |month|
               - if Date.today.year.to_s != year or Date.today.month <= month 
                 %li
-                  %a( href='/?release_date=#{year}-#{month}' )
+                  %a.month( href='/?release_date=#{year}-#{month}' )
                     = Date::MONTHNAMES[month]
