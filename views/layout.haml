@@ -35,10 +35,13 @@
     = yield
     
     %ul#dates
-      - (0..2).map { |i| Date.today.year + i }.each do |year|
+      - (0..3).map { |i| Date.today.year + i }.each do |year|
         %li
           %a( href="/year:#{year}" )= year
           %ul
+            %li
+              %a( href='/year:#{year}/release_date:unknown' )
+                Unknown
             - (1..12).each do |month|
               - if Date.today.year != year or Date.today.month <= month
                 %li
