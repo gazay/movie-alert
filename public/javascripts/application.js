@@ -21,4 +21,14 @@ jQuery(function($) {
             el.removeClass('default').parents('li').addClass('used')
         }
     })
+    
+    $('#subscriptions :submit').attr('disabled', 'disabled')
+    $('#subscriptions :text').keyup(function() {
+      var el = $(this)
+      if ('' != el.val() && !el.hasClass('default')) {
+        $('#subscriptions :submit').attr('disabled', '')
+      } else {
+        $('#subscriptions :submit').attr('disabled', 'disabled')
+      }
+    })
 })
