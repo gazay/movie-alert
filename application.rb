@@ -8,7 +8,11 @@ require 'scripts/subscription'
 
 get '/' do
   @release_months = Cache.find_one(:name => 'release_months')['value']
-  @movies = Movies.find(params_to_query(params))
+  if params.empty?
+    @movies = [] #TODO
+  else
+    @movies = Movies.find(params_to_query(params))
+  end
   haml :index
 end
 
@@ -23,12 +27,12 @@ get '/subscribe' do
 end
 
 get '/suggest/actor' do
-  Actors.find({:name => /^#{params['q']}/i},
+  Actors.find({:name => /#{params['q']}/i},
       {:limit => params['limit'].to_i}).map{|i| i['name']}.to_a.join("\n")
 end
 
 get '/suggest/director' do
-  Directors.find({:name => /^#{params['q']}/i},
+  Directors.find({:name => /#{params['q']}/i},
       {:limit => params['limit'].to_i}).map{|i| i['name']}.to_a.join("\n")
 end
 

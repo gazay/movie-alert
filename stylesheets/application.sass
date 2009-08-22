@@ -5,6 +5,8 @@ body
 input, select
   +sans-serif
   font-size: 100%
+strong
+  font-weight: bold
 
 a:focus, a:hover
   background-color= !color
@@ -35,15 +37,6 @@ a:focus, a:hover
       input[type='submit']
         width: 5.5em
 
-.default
-  color: gray
-  
-select.default
-  option
-    color: black
-  option.default
-    color: gray
-
 #dates
   position: absolute
   top: 10ex
@@ -55,3 +48,23 @@ select.default
   ul li a
     padding-left: 1.3em
     font-size: 85%
+
+.ac_results
+  ul
+    li
+      background: white
+      display: block
+      padding: 0.5em
+    li.ac_even
+      background-color: #eee
+    li.ac_over
+      background-color= !color
+      color: white
+
+.default
+  color: gray
+select.default
+  option
+    color: black
+  option.default
+    color: gray
