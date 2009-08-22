@@ -1,6 +1,6 @@
 require 'mongo_record'
 
-MongoRecord::Base.connection = Mongo::Connection.new('97.107.138.149').db('imdb_data')
+MongoRecord::Base.connection = Mongo::Connection.new('97.107.138.149').db('imdb')
 
 class Movie < MongoRecord::Base
   collection_name :movies
