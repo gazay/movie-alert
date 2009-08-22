@@ -22,13 +22,13 @@ jQuery(function($) {
         }
     })
     
-    $('#subscriptions :submit').attr('disabled', 'disabled')
-    $('#subscriptions :text').keyup(function() {
-      var el = $(this)
-      if ('' != el.val()) {
-        $('#subscriptions :submit').attr('disabled', '')
-      } else if (0 != $('#subscriptions .default').length) {
-        $('#subscriptions :submit').attr('disabled', 'disabled')
-      }
-    })
+    // $('#subscriptions :submit').attr('disabled', 'disabled')
+    // $('#subscriptions :text').keyup(function() {
+    //   var el = $(this)
+    //   if ('' != el.val()) {
+    //     $('#subscriptions :submit').attr('disabled', '')
+    //   } else if (0 != $('#subscriptions .default').length) {
+    //     $('#subscriptions :submit').attr('disabled', 'disabled')
+    //   }
+    // })
 })
