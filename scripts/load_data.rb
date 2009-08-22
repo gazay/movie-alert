@@ -38,12 +38,13 @@ ids.each do |id|
   
   i += 1
   puts "#{j}/#{all} #{i} #{id} #{movie.title}"
-  puts "  #{movie.director}"
-  puts "  #{movie.cast_members.join(', ')}"
-  puts "  #{movie.genres.join(', ')}"
-  puts "  #{movie.poster}"
+  puts "  Director: #{movie.director}"
+  puts "  Members:  #{movie.cast_members.join(', ')}"
+  puts "  Genres:   #{movie.genres.join(', ')}"
+  puts "  Poster:   #{movie.poster}"
+  puts "  Year:     #{year}"
+  puts "  Release:  #{release_date}"
   puts "  #{plot}"
-  puts "  #{release_date}"
   
   movies.insert('imdb_id'      => id,
                 'title'        => movie.title,
@@ -52,5 +53,6 @@ ids.each do |id|
                 'genres'       => movie.genres,
                 'poster'       => movie.poster,
                 'plot'         => plot,
+                'year'         => movie.year,
                 'release_date' => release_date)
 end
