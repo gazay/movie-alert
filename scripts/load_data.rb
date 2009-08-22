@@ -41,7 +41,7 @@ ids.each do |id|
   puts "  Poster:   #{movie.poster}"
   puts "  Year:     #{year}"
   puts "  Release:  #{release_date}"
-  puts "  #{plot}"
+  puts "  Plot:     #{plot}"
   
   genres = movie.genres.map {|it| Genre.create :name => it }
   actors = movie.cast_members.map {|it| Actor.create :name => it }  
