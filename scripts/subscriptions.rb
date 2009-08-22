@@ -7,7 +7,17 @@ module Subscriptions
   
   def add_email(targets, new_mail)
     s = Subscription.find(:targets => targets)
-    s.emails << email
+    s.emails << new_email
     s.save
+  end
+  
+  def add_twit(targets, new_twit)
+    s = Subscription.find(:targets => targets)
+    s.twits << new_twit
+    s.save
+  end
+  
+  def find_movies_by_subs(targets)
+    Movie.find(targets, )
   end
 end
