@@ -33,6 +33,14 @@
             %input( type='submit' value='Subcribe' )/
 
     = yield
+    
+    %ul#dates
+      - 3.times do |yead_add|
+        %li
+          = Date.today.year + yead_add
+          %ul
+            - 12.times do |month|
+              %li= Date::MONTHNAMES[month + 1]
 
     %script( type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js' )
     %script( type='text/javascript' src='/javascripts/application.js' )
