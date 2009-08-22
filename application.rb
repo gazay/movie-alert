@@ -15,7 +15,3 @@ end
     #TODO
   end
 end
-
-get '/movies' do
-  #TODO
-end

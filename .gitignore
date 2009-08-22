@@ -2,5 +2,6 @@
 nbproject
 *~
 
+.cache
 .sass-cache
 *.css

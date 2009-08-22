@@ -14,7 +14,13 @@ class Movie < MongoRecord::Base
   end
 end
 
-Genres = Movie.all.inject([]) { |all, i| all + i['genres'] }.uniq!
+genres_cache = File.join(File.dirname(__FILE__), '.cache', 'genres.list')
+if File.exists? genres_cache
+  Genres = File.readlines(genres_cache)
+else
+  Genres = Movie.all.inject([]) { |all, i| all + i['genres'] }.uniq!
+  File.open(genres_cache, 'w') { |io| io.write Genres.join("\n") }
+end
 
 class Subscription < MongoRecord::Base
   collection_name :subscriptions
