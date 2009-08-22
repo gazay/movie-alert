@@ -22,7 +22,7 @@ ids.each do |id|
   j += 1
   
   unless movie.director
-    puts "--/#{j}/#{all}"
+    puts "#{i}/#{j}/#{all}"
     next
   end
   
