@@ -23,14 +23,13 @@
               %option Genre
               - Genres.each do |genre|
                 %option= genre.capitalize
-      %ul#subscription
-        %li#email
-          %form( action='/' )
+      %form#subscription( action='/' )
+        %ul
+          %li#email
             %input.default( type='text' value='Your e-mail' )/
-            %input( type='submit' value='Subcribe' )/
-        %li#twitter
-          %form( action='/' )
+          %li#twitter
             %input.default( type='text' value='Your twitter name' )/
+          %li
             %input( type='submit' value='Subcribe' )/
 
     #movies
