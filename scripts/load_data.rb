@@ -73,6 +73,6 @@ ids.each do |id|
 end
 
 cache_folder = File.join(File.dirname(__FILE__), '..', 'cache')
-File.open(File.join(cache_folder, 'directors.yml'), 'w+') {|f| f.write directors.to_a.to_yaml }
-File.open(File.join(cache_folder, 'actors.yml'), 'w+') {|f| f.write actors.to_a.to_yaml }
-File.open(File.join(cache_folder, 'genres.yml'), 'w+') {|f| f.write genres.to_a.to_yaml }
+File.open(File.join(cache_folder, 'directors.yml'), 'w+') {|f| f.puts directors.to_a.to_yaml }
+File.open(File.join(cache_folder, 'actors.yml'), 'w+') {|f| f.puts actors.to_a.to_yaml }
+File.open(File.join(cache_folder, 'genres.yml'), 'w+') {|f| f.puts genres.to_a.to_yaml }
