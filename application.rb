@@ -11,23 +11,16 @@ get /^\/(index.(html|part))?$/ do
   
   @release_months = Cache.find_one(:name => 'release_months')['value']
   query = params_to_query(params)
-  @year = !(query.has_key?('year') or query.has_key?('release_date'))
+  @time_filter = !(query.has_key?('year') or query.has_key?('release_date'))
+  query['title'] = /\w/ unless query.has_key? 'title'
   
   if query.empty?
-    @movies = [] #TODO
-  else
-    @movies = Movies.find(query, {:limit => 500}).to_a
-    @movies.sort! { |a, b|
-      if not a['poster'] and b['poster']
-        1
-      elsif a['poster'] and not b['poster']
-        -1
-      else
-        a['title'].to_s <=> b['title'].to_s
-      end
-    }.reject! { |i|
-      i['title'].nil? or i['title'] =~ /^\s*$/
-    }
+    @movies = Movies.find(query, {:limit => 100, :sort => {'poster' => 1, 'title' => 1 }}).to_a
+#    @movies.sort! { |a, b|
+#      a['poster'] <=> b['poster']
+#    }.reject! { |i|
+#      i['title'].nil? or i['title'] =~ /^\s*$/
+#    }
   end
   
   if 'part' == format

@@ -55,13 +55,16 @@ ids.each do |id|
   exists = Directors.find_one(:name => movie.director)
   director = exists ? exists : Directors.insert(:name => movie.director)
   
-  Movies.insert 'imdb_id'      => id,
-                'title'        => movie.title,
-                'director'     => director,
-                'actors'       => actors,
-                'genres'       => genres,
-                'poster'       => movie.poster,
-                'plot'         => plot,
-                'release_date' => release_date,
-                'year'         => movie.year
+  poster_exists = !poster.nil? and !poster.empty?
+  
+  Movies.insert 'imdb_id'       => id,
+                'title'         => movie.title,
+                'director'      => director,
+                'actors'        => actors,
+                'genres'        => genres,
+                'poster'        => movie.poster,
+                'poster_exists' => poster_exists,
+                'plot'          => plot,
+                'release_date'  => release_date,
+                'year'          => movie.year
 end

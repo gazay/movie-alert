@@ -9,8 +9,8 @@
           %label Actors
           = #movie['actors'].map { |i| i['name'] }.join(', ')
         .director
-          %label Genre
-          = #movie['genre']['name']
+          %label Genres
+          = #movie['genres'].map { |i| i['name'] }.join(', ')
       - if movie['poster']
         %img{ :src => poster_thumb(movie['poster'], 150, 200) }/
       %h1= movie['title']
