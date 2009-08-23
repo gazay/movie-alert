@@ -2,20 +2,26 @@
   %ul{ :class => hide_if_part(@format) }
     - @movies.each do |movie|
       %li( id="movie-#{movie['imdb_id']}" )
-        .info.hide
+        .info
           .director
-            %label Director
+            %label Director:
             = #movie['director']['name']
           .actors
-            %label Actors
+            %label Actors:
             = #movie['actors'].map { |i| i['name'] }.join(', ')
           .director
-            %label Genres
+            %label Genres:
             = #movie['genres'].map { |i| i['name'] }.join(', ')
+          .plot
+            = movie['plot']
         - if movie['poster']
           %img{ :src => poster_thumb(movie['poster'], 150, 200) }/
         %h1= movie['title']
         - if movie['release_date']
           .release_date= format_date(movie['release_date'], @year)
+  -if @all > @offset + @movies.count
+    %span.next_offset.hide= @offset + @movies.count
+    %input.hide( type='button' class='next' value='Next movies ↓' )
+    
 - else
   %h1.empty No movies
