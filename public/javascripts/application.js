@@ -32,6 +32,7 @@ jQuery(function($) {
         var el = $(this)
         if (el.hasClass('clear')) {
             el.next().val('')
+            el.removeClass('clear').attr('title', '')
             $.address.value(getSearchAddress())
         }
     })
