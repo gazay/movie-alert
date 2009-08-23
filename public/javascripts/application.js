@@ -49,7 +49,7 @@ jQuery(function($) {
         return address.substring(0, address.length-1)
     }
     
-    updateSearch = function(data) {
+    updateSearch = function(data, animation) {
         $('#filters .used').removeClass('used')
         for (key in data) {
             if ('year' == key || 'release_date' == key) {
@@ -60,22 +60,25 @@ jQuery(function($) {
                         removeClass('default').parents('li').addClass('used')
             }
         }
-        
-        reloadMovies(data)
     }
     
-    reloadMovies = function(data) {
+    reloadMovies = function(data, animation) {
         $('#movies ul').addClass('old').css('background', 'white')
         
         $.get('/index.part', data, function(data) {
             $('#movies').prepend(data)
-            speed = $('#movies ul:not(.old)').height() / 1.6
             
-            
-            $('#movies ul:not(.old)').slideDown(speed)
-            $('#movies ul.old').slideUp(speed, function() {
+            if (animation) {
+                speed = $('#movies ul:not(.old)').height() / 1.6
+                
+                $('#movies ul:not(.old)').slideDown(speed)
+                $('#movies ul.old').slideUp(speed, function() {
+                    $('#movies .old').remove()
+                })
+            } else {
                 $('#movies .old').remove()
-            })
+                $('#movies ul').show()
+            }
             
             if (0 != $('#header .filter:not(.default)').length) {
                 $('#subscriptions').show()
@@ -98,7 +101,17 @@ jQuery(function($) {
         return false
     })
     
+    var first = true
     $.address.change(function(event) {
-        updateSearch(event.parameters)
+        if (first) {
+            if (0 != event.parameterNames.length) {
+                updateSearch(event.parameters)
+                reloadMovies(event.parameters, false)
+            }
+            first = false
+        } else {
+            updateSearch(event.parameters)
+            reloadMovies(event.parameters, true)
+        }
     })
 })
