@@ -3,6 +3,9 @@
 require 'set'
 require File.join(File.dirname(__FILE__), '..', 'database')
 
+Genres.clear
+Directors.clear
+Actors.clear
 Cache.clear
 
 count = Movies.find.count
@@ -35,6 +38,7 @@ dates.each do |year, month|
 end
 
 Cache.insert :name => 'release_months', :value => months
-Cache.insert :name => 'directors', :value => directors.to_a
-Cache.insert :name => 'actors', :value => actors.to_a
-Cache.insert :name => 'genres', :value => genres.to_a
+
+genres.to_a.each { |i| Genres.insert i }
+directors.to_a.each { |i| Directors.insert i }
+actors.to_a.each { |i| Actors.insert i }
