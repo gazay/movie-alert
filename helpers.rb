@@ -51,3 +51,39 @@ def typographer(string)
   string.gsub(/(^|\s)"/, '\1“').gsub(/"($|\s)/, '”\1').
          gsub(/(\w)'(\w)/, '\1’\2').gsub('...', '…')
 end
+
+def display_actors(movie)
+  string = movie['actors'].join(', ')
+  if string.size > 100
+    string[0..100] + '...'
+  else
+    string
+  end
+end
+
+def display_genres(movie)
+  string = movie['genres'].join(', ')
+  if string.size > 100
+    string[0..100] + '...'
+  else
+    string
+  end
+end
+
+def display_plot(movie)
+  string = movie['plot']
+  if string.size > 300
+    string[0..100] + '...'
+  else
+    string
+  end
+end
+
+def display_poster(movie)
+  if movie['poster_exists']
+    url = "http://movie-alert.r09.railsrumble.com/posters/#{movie['imdb_id']}.jpg"
+  else
+    url = "http://movie-alert.r09.railsrumble.com/images/no_cover.png"
+  end
+  "<img src='#{url}' alt='Poster for movie #{movie['title']}'/>"
+end

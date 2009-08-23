@@ -123,15 +123,6 @@ a
         +border-top-right-radius(0.6ex)
         +border-bottom-right-radius(0.6ex)
         background: white
-      .info
-        float: left
-        width= !movie_info_width
-        max-height= !movie_card_height
-        text-align: left
-        overflow: auto
-        padding: 0.5em
-        .plot
-          margin-top: 1ex
       .control
         float: right
         width= !movie_control_width
@@ -216,3 +207,19 @@ option.label
 
 .float_clear
   clear: both
+
+.tooltip
+  background-color: #000
+  outline: 1px solid #669
+  border: 2px solid #fff
+  padding: 10px 15px
+  width: 200px
+  display: none
+  color: #fff
+  text-align: left
+  font-size: 12px
+  outline-radius: 4px
+  -moz-outline-radius: 4px
+  -webkit-outline-radius: 4px
+  .plot
+    margin-top: 1ex
