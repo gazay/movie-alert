@@ -27,7 +27,7 @@ get /^\/(index.(html|part))?$/ do
   sort << ((@empty_search or !@time_filter) ? 'title' : 'release_timestamp')
   
   @all = Movies.find(query).count
-  @movies = Movies.find(query, {:limit => 60, :sort => sort,
+  @movies = Movies.find(query, {:limit => 50, :sort => sort,
                                 :offset => @offset}).to_a
 
   if request.xhr?

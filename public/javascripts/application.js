@@ -27,20 +27,23 @@ jQuery(function($) {
         }
     })
     
-    $('input.default').each(function() {
-        var el = $(this)
-        el.data('defaultValue', el.val())
-    }).focus(function() {
-        var el = $(this)
-        if (el.hasClass('default')) {
-            el.removeClass('default').val('')
-        }
-    }).blur(function() {
-        var el = $(this)
-        if (!el.parent('li').hasClass('used')) {
-            setDeafultValue(el, true)
-        }
-    })
+    setDefaultInputs = function(inputs) {
+        inputs.each(function() {
+            var el = $(this)
+            el.data('defaultValue', el.val())
+        }).focus(function() {
+            var el = $(this)
+            if (el.hasClass('default')) {
+                el.removeClass('default').val('')
+            }
+        }).blur(function() {
+            var el = $(this)
+            if (!el.parent('li').hasClass('used')) {
+                setDeafultValue(el, true)
+            }
+        })
+    }    
+    setDefaultInputs($('input.default'))
     
     $('#logo').click(function() {
         $('#filters input').each(function() { setDeafultValue($(this), false) })
@@ -135,6 +138,7 @@ jQuery(function($) {
                 $('#movies .old').remove()
                 $('#movies ul').show()
             }
+            setDefaultInputs($('#movies input.default'))
                             
             if (0 != $('#header .filter:not(.default)').length) {
                 $('#subscriptions').show()
@@ -176,6 +180,7 @@ jQuery(function($) {
             $('#movies .next').remove()
             $('#movies').append(content)
             $('#movies ul:last').show()
+            setDefaultInputs($('#movies ul:last input.default'))
             $('.next').show()
         })
     })
@@ -197,5 +202,6 @@ jQuery(function($) {
         })
         return false
     })
+    
     $('#info').tooltip({ position: ['center', 'left'], opacity: 0.97 })
 })
