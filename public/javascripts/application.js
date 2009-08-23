@@ -25,9 +25,8 @@ jQuery(function($) {
     $('#filters input[name=actor]').autocomplete('/suggest/actor')
     $('#filters input[name=director]').autocomplete('/suggest/actor')
     
-    reload_movies = function() {
-        $('#movies').addClass('loaded')
-        data = {}
+    use_search = function() {
+        var data = {}
         $('#filters input:not(.default),' + 
           ' #filters select:not(.default)').each(function() {
             var el = $(this)
@@ -42,19 +41,48 @@ jQuery(function($) {
             }
         })
         
+        var address = '/?'
+        for (key in data) {
+            address += encodeURI(key) + '=' + encodeURI(data[key]) + '&'
+        }
+        $.address.value(address.substring(0, address.length-1))
+    }
+    
+    update_search = function(data) {
+        $('#filters .used').removeClass('used')
+        for (key in data) {
+            if ('year' == key || 'release_date' == key) {
+                $('#dates .used').removeClass('used')
+                $('a[href="/?' + key + '=' + data[key] + '"]').addClass('used')
+            }  else {
+                $('#filters [name=' + key + ']').val(data[key]).
+                        removeClass('default').parents('li').addClass('used')
+            }
+        }
+        
+        reload_movies(data)
+    }
+    
+    reload_movies = function(data) {
+        $('#movies').addClass('loaded')
+        
         $.get('/index.part', data, function(data) {
             $('#movies').empty().removeClass('loaded').append(data)
         }, 'html')
     }
     
     $('#filters select, #filters input').change(function() {
-        reload_movies()
+        use_search()
     })
     
     $('#dates a').click(function() {
         $('#dates .used').removeClass('used')
         $(this).addClass('used')
-        reload_movies()
+        use_search()
         return false
+    })
+    
+    $.address.change(function(event) {
+        update_search(event.parameters)
     })
 })
