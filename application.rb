@@ -8,8 +8,10 @@ require 'scripts/subscription'
 
 get /^\/(index.(html|part))?$/ do
   @format = params['captures'] ? params['captures'][1] : 'html'
-  
   @release_months = Cache.find_one(:name => 'release_months')['value']
+  
+  @offset = (params['offset'] || 0).to_i
+  
   query = params_to_query(params)
   @time_filter = !(query.has_key?('year') or query.has_key?('release_date'))
   query['title'] = /\w/ unless query.has_key? 'title'
@@ -17,7 +19,9 @@ get /^\/(index.(html|part))?$/ do
   sort = [{'poster_exists' => -1}]
   sort << (@time_filter ? 'title' : 'release_date')
   
-  @movies = Movies.find(query, {:limit => 100, :sort => sort}).to_a
+  @all = Movies.find(query).count
+  @movies = Movies.find(query, {:limit => 60, :sort => sort,
+                                :offset => @offset}).to_a
 
   if 'part' == @format
     haml :index, :layout => false
@@ -52,6 +56,8 @@ end
 
 def params_to_query(params)
   params.delete('captures')
+  params.delete('offset')
+  
   Hash[params.to_a.map do |key, value|
     case key
     when 'year'

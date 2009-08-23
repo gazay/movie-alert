@@ -19,5 +19,9 @@
         %h1= movie['title']
         - if movie['release_date']
           .release_date= format_date(movie['release_date'], @year)
+  -if @all > @offset + @movies.count
+    %span.next_offset.hide= @offset + @movies.count
+    %input.hide( type='button' class='next' value='Next movies ↓' )
+    
 - else
   %h1.empty No movies
