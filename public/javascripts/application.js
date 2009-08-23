@@ -60,22 +60,31 @@ jQuery(function($) {
                         removeClass('default').parents('li').addClass('used')
             }
         }
-        if (0 != $('#header .filter:not(.default)').length) {
-            $('#subscriptions').show()
-            $('#description').hide()
-        } else {
-            $('#subscriptions').hide()
-            $('#description').show()
-        }
         
         reloadMovies(data)
     }
     
     reloadMovies = function(data) {
-        $('#movies').addClass('loaded')
+        $('#movies ul').addClass('old').css('background', 'white')
         
         $.get('/index.part', data, function(data) {
-            $('#movies').empty().removeClass('loaded').append(data)
+            $('#movies').prepend(data)
+            speed = $('#movies ul:not(.old)').height() / 1.6
+            $('#movies ul:not(.old)').hide()
+            
+            
+            $('#movies ul:not(.old)').slideDown(speed)
+            $('#movies ul.old').slideUp(speed, function() {
+                $('#movies').remove('ul.old')
+            })
+            
+            if (0 != $('#header .filter:not(.default)').length) {
+                $('#subscriptions').show()
+                $('#description').hide()
+            } else {
+                $('#subscriptions').hide()
+                $('#description').show()
+            }
         }, 'html')
     }
     

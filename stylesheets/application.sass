@@ -40,7 +40,7 @@ strong
   background: white
   margin-top: 2ex
   li a
-    padding: 0.4ex 0.6em
+    padding: 0.4ex 0.8em 0.4ex 0.6em
     display: block
     text-decoration: none
     +border-top-left-radius(0.6ex)
@@ -67,6 +67,8 @@ strong
     .release_date
       color: gray
       margin-top: 0.5ex
+  .old
+    +opacity(0.3)
 
 li.used, a.used
   background = !color
@@ -94,6 +96,8 @@ li.used, a.used
 select.default
   option
     color: black
+  option.label
+    color: gray
 option.label
   color: gray
 
