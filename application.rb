@@ -14,11 +14,12 @@ get /^\/(index.(html|part))?$/ do
   @offset = (params['offset'] || 0).to_i
   
   query = params_to_query(params)
+  @empty_search = !query.empty?
   @time_filter = !(query.has_key?('year') or query.has_key?('release_date'))
   query['title'] = /\w/ unless query.has_key? 'title'
   
   sort = [{'poster_exists' => -1}]
-  sort << (@time_filter ? 'title' : 'release_date')
+  sort << ((@empty_search or !@time_filter) ? 'title' : 'release_date')
   
   @all = Movies.find(query).count
   @movies = Movies.find(query, {:limit => 60, :sort => sort,
