@@ -39,11 +39,19 @@ end
 
 get '/subscribe' do
   targets = {}
-  targets['title'] = params[:title] if params[:title] != 'Title'
+  if params[:title] && params[:title] != 'Title'
+    targets['title'] = params[:title]
+  end
   targets['imdb_id'] = params[:imdb_id].to_i if params[:imdb_id]
-  targets['actor'] = params[:actor] if params[:actor] != 'Actor'
-  targets['director'] = params[:director] if params[:director] != 'Director'
-  targets['genre'] = params[:genre] if params[:genre] != 'Genre'
+  if params[:actor] && params[:actor] != 'Actor'
+    targets['actor'] = params[:actor]
+  end
+  if params[:director] && params[:director] != 'Director'
+    targets['director'] = params[:director]
+  end
+  if params[:genre] && params[:genre] != 'Genre'
+    targets['genre'] = params[:genre]
+  end
   targets = nil if targets == {}
   if targets
     Subscription.add_email(targets, params[:subs_mail])
