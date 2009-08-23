@@ -194,4 +194,5 @@ jQuery(function($) {
         })
         return false
     })
+    $('#info').tooltip({ position: ['center', 'left'] })
 })
