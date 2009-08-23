@@ -41,10 +41,10 @@
           %a.year( href="/?year=#{year}" )= year
           %ul
             - months.each do |month|
-              - if Date.today.year.to_s != year or Date.today.month <= month 
+              - if Date.today.year.to_s != year or Date.today.month <= month.to_i
                 %li
                   %a.month( href='/?release_date=#{year}-#{month}' )
-                    = Date::MONTHNAMES[month]
+                    = Date::MONTHNAMES[month.to_i]
 
     #movies
       = yield

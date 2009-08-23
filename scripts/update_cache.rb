@@ -20,7 +20,6 @@ dates.uniq!.sort! { |a, b| a[0] + a[1] <=> b[0] + b[1] }
 
 months = {}
 dates.each do |year, month|
-  month = month.to_i
   months[year] = [] unless months.has_key? year
   months[year] << month
 end
