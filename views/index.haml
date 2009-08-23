@@ -3,19 +3,7 @@
     - @movies.each do |movie|
       %li( id="movie-#{movie['imdb_id']}" )
         .panel
-          .wrapper
-            .info
-              .director
-                %label Director:
-                = movie['director']
-              .actors
-                %label Actors:
-                = movie['actors'].join(', ')
-              .director
-                %label Genres:
-                = movie['genres'].join(', ')
-              .plot
-                = movie['plot']
+          .wrapper            
             .control
               %a.close( href='#' ) Close
               %form( action='/subscribe' )
@@ -31,6 +19,19 @@
           %h1= typographer(movie['title'])
           - if movie['release_date']
             .release_date= format_date(movie['release_date'], @time_filter)
+      .tooltip
+        .info
+          .director
+            %label Director:
+            = movie['director']
+          .actors
+            %label Actors:
+            = display_actors movie
+          .director
+            %label Genres:
+            = display_genres movie
+          .plot
+            = display_plot movie
   -if @all > @offset + @movies.count
     .next.hide
       .offset.hide= @offset + @movies.count
