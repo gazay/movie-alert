@@ -39,6 +39,20 @@ end
 
 Cache.insert :name => 'release_months', :value => months
 
-genres.to_a.each { |i| Genres.insert :name => i }
-directors.to_a.each { |i| Directors.insert :name => i }
-actors.to_a.each { |i| Actors.insert :name => i }
+all = genres.length
+genres.to_a.each_with_index do |i, j|
+  puts "#{j}/#{all}"
+  Genres.insert :name => i
+end
+
+all = actors.length
+actors.to_a.each_with_index do |i, j|
+  puts "#{j}/#{all}"
+  Actors.insert :name => i
+end
+
+all = directors.length
+directors.to_a.each_with_index do |i, j|
+  puts "#{j}/#{all}"
+  Directors.insert :name => i
+end

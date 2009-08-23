@@ -52,6 +52,6 @@ get '/suggest/actor' do
 end
 
 get '/suggest/director' do
-  Directors.find({:name => /#{params['q']}/i, }
+  Directors.find({:name => /#{params['q']}/i },
       { :limit => params['limit'].to_i }).to_a.map { |i| i['name']}.join("\n")
 end
