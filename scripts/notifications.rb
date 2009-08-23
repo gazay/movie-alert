@@ -40,7 +40,12 @@ def find_subs(day, movies)
     movies.each do |movie|
       can_send = nil
       sub['targets'].each do |key, value|
-        can_send = movie[key].include? value
+        puts key.inspect + ' - ' + value.inspect
+        if key == 'director'
+          can_send = movie[key] == value
+        else
+          can_send = movie[key + 's'].include? value
+        end
       end
       if can_send && sub['twit']
         Send.twit :to_user => sub['twit'],
@@ -48,7 +53,8 @@ def find_subs(day, movies)
                     ' release date of ' + movie['title'] + 
                     '. Link: http://www.imdb.com/title/tt' + 
                     movie['imdb_id'] + '/'
-      elsif sub['email']
+        puts 'Send to @' + sub['twit']
+      elsif can_send && sub['email']
         Send.mail :to => sub['email'],
                   :subject => day +
                     ' release date of ' + 
@@ -56,7 +62,6 @@ def find_subs(day, movies)
                   :body => 'Link to film: ' +
                     'http://www.imdb.com/title/tt' + 
                     movie['imdb_id'] + '/'
-        puts 'send to ' + sub['email']
       end                          
     end
   end 
