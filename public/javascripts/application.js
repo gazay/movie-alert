@@ -70,7 +70,7 @@ jQuery(function($) {
         $('#movies ul, .empty').addClass('old')
         
         $.get('/index.part', data, function(content) {
-            $('.empty, .next, .next_offset').remove()
+            $('.empty, .next').remove()
             $('#movies').prepend(content)
             
             if (animation) {
