@@ -16,7 +16,7 @@
             = movie['plot']
         - if movie['poster']
           %img{ :src => poster_thumb(movie['poster'], 150, 200) }/
-        %h1= movie['title']
+        %h1= typographer(movie['title'])
         - if movie['release_date']
           .release_date= format_date(movie['release_date'], @year)
   -if @all > @offset + @movies.count
