@@ -194,5 +194,5 @@ jQuery(function($) {
         })
         return false
     })
-    $('#info').tooltip({ position: ['center', 'left'] })
+    $('#info').tooltip({ position: ['center', 'left'], opacity: 0.97 })
 })

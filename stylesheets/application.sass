@@ -198,6 +198,7 @@ h1.empty
   position: fixed
   top: 50%
   left: 40%
+  text-shadow: 1px 1px 1px #bbb
 
 li.used, a.used
   background= !color
@@ -237,17 +238,11 @@ option.label
   clear: both
 
 #info-tooltip
-  background-color: #000
-  outline: 1px solid #669
-  border: 2px solid #fff
-  padding: 10px 15px
-  width: 200px
+  background-color: white
+  border= 2px "solid" !color
+  +border-radius(0.6ex)
+  padding: 0.5em
+  width: 10em
   display: none
-  color: #fff
+  color: black
   text-align: left
-  font-size: 12px
-  outline-radius: 4px
-  -moz-outline-radius: 4px
-  -webkit-outline-radius: 4px
-  .plot
-    margin-top: 1ex
