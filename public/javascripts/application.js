@@ -94,10 +94,12 @@ jQuery(function($) {
     
     reloadMovies = function(data, animation) {
         $('#movies ul, .empty').addClass('old')
+        $('#logo').addClass('loading')
         
         $.get('/index.part', data, function(content) {
             $('.empty, .next').remove()
             $('#movies').prepend(content)
+            $('#logo').removeClass('loading')
             
             if (animation) {
                 var speed = $('#movies ul:not(.old)').height() / 1.6
