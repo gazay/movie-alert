@@ -186,6 +186,7 @@ jQuery(function($) {
     })
     
     $('#movies li:not(.open)').live('click', function() {
+        $('#movies .open .close').click()
         var card = $(this)
         var panel = card.children('.panel')
         if ($(document).width() < (card.offset().left + panel.width() + 180)) {
@@ -194,12 +195,10 @@ jQuery(function($) {
             panel.removeClass('left')
         }
         card.addClass('open')
-        panel.fadeIn(200)
+        panel.show()
     })
     $('#movies .close, #movies .open .card').live('click', function() {
-        $(this).parents('li').children('.panel').fadeOut(200, function() {
-            $(this).parents('li').removeClass('open')
-        })
+        $(this).parents('li').removeClass('open').children('.panel').hide()
         return false
     })
     
