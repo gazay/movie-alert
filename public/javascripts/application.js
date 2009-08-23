@@ -31,7 +31,7 @@ jQuery(function($) {
     $('#filters .icon').click(function() {
         var el = $(this)
         if (el.hasClass('clear')) {
-            el.next().val('')
+            el.next().addClass('default').val(el.next().data('defaultValue'))
             el.removeClass('clear').attr('title', '')
             $.address.value(getSearchAddress())
         }
