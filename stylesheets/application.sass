@@ -22,17 +22,21 @@ strong
       input[type='text']
         width= !filters_width
   #subscriptions
-    margin-left: -2em
     li
       padding-top: 0.5ex
       input[type='text']
         width: 9.5em
       input[type='submit']
         width: 5.5e
+  #description
+    text-align: center
+    padding: 0.5ex 0
+    height: 3.5ex
+    line-height: 3.5ex
 
 #dates
   position: absolute
-  top: 10ex
+  top: 13ex
   width= !dates_width
   right: 0
   background: white
@@ -93,5 +97,8 @@ li.used, a.used
 select.default
   option
     color: black
-  option.default
-    color: gray
+option.label
+  color: gray
+
+.hide
+  display: none

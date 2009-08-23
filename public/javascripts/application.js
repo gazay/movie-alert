@@ -27,8 +27,7 @@ jQuery(function($) {
     
     getSearch = function() {
         var data = {}
-        $('#filters input:not(.default),' + 
-          ' #filters select:not(.default)').each(function() {
+        $('#filters .filter:not(.default)').each(function() {
             var el = $(this)
             el.parents('li').addClass('used')
             if ('' != el.val()) {
@@ -60,6 +59,13 @@ jQuery(function($) {
                 $('#filters [name=' + key + ']').val(data[key]).
                         removeClass('default').parents('li').addClass('used')
             }
+        }
+        if (0 != $('#header .filter:not(.default)').length) {
+            $('#subscriptions').show()
+            $('#description').hide()
+        } else {
+            $('#subscriptions').hide()
+            $('#description').show()
         }
         
         reloadMovies(data)
