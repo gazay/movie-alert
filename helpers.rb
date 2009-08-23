@@ -78,3 +78,12 @@ def display_plot(movie)
     string
   end
 end
+
+def display_poster(movie)
+  if movie['poster_exists']
+    url = "http://movie-alert.r09.railsrumble.com/posters/#{movie['imdb_id']}.jpg"
+  else
+    url = "http://movie-alert.r09.railsrumble.com/images/no_cover.png"
+  end
+  "<img src='#{url}' alt='Poster for movie #{movie['title']}'/>"
+end

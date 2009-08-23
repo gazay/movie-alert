@@ -14,8 +14,7 @@
                   = "More on IMDb"
             .float_clear
         .card
-          - if movie['poster_exists']
-            %img{ :src => "http://movie-alert.r09.railsrumble.com/posters/#{movie['imdb_id']}.jpg", :alt => "Poster for movie #{movie['title']}" }/
+          = display_poster movie
           %h1= typographer(movie['title'])
           - if movie['release_date']
             .release_date= format_date(movie['release_date'], @time_filter)
