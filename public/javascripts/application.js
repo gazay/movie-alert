@@ -17,6 +17,9 @@ jQuery(function($) {
     }).keydown(function(event) {
         if (13 == event.keyCode) {
             var el = $(this)
+            if (el.hasClass('ac_input')) {
+                el.val($('.ac_over').text())
+            }
             el.blur()
             setDeafultValue(el, true)
             $.address.value(getSearchAddress())
