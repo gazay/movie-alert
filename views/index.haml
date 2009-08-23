@@ -1,4 +1,6 @@
 %ul
   - @movies.each do |movie|
     %li( id="movie-#{movie['imdb_id']}" )
-      =movie['title']
+      - if movie['poster']
+        %img{ :src => poster_thumb(movie['poster'], 150, 200) }/
+      %h1= movie['title']

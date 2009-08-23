@@ -14,7 +14,16 @@ get /^\/(index.(html|part))?$/ do
   if query.empty?
     @movies = [] #TODO
   else
-    @movies = Movies.find(query, {:limit => 1000})
+    @movies = Movies.find(query, {:limit => 1000}).to_a
+    @movies.sort! do |a, b|
+      if not a['poster'] and b['poster']
+        1
+      elsif a['poster'] and not b['poster']
+        -1
+      else
+        a['title'].to_s <=> b['title'].to_s
+      end
+    end
   end
   
   if 'part' == format
@@ -69,4 +78,8 @@ def params_to_query(params)
     end
     [key, value]
   end]
+end
+
+def poster_thumb(poster_url, width, height)
+  poster_url[0..-5] + "._V1._SX#{width}_SY#{height}_.jpg"
 end
