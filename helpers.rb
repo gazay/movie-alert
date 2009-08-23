@@ -84,7 +84,7 @@ def display_poster(movie)
     url = "http://movie-alert.r09.railsrumble.com/posters/#{movie['imdb_id']}.jpg"
     "<img src='#{url}' alt='Poster for movie #{movie['title']}' class='poster'/>"
   else
-    url = "http://movie-alert.r09.railsrumble.com/images/no_cover.png"
+    url = "http://movie-alert.r09.railsrumble.com/images/empty.png"
     "<img src='#{url}' alt='No poster found for movie #{movie['title']}' width='150' height='200'/>"
   end
   

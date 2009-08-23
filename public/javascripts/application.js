@@ -190,7 +190,7 @@ jQuery(function($) {
         return false
     })
     
-    $.tools.addTipEffect("slidedown",   
+    $.tools.addTipEffect("slidedown",
         function() {  
             var opacity = this.getConf().opacity; 
             this.getTip().css({opacity:0}).animate({top: '+=15', opacity:opacity}, 300).show(); 
