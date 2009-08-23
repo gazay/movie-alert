@@ -18,8 +18,13 @@ get /^\/(index.(html|part))?$/ do
   @time_filter = !(query.has_key?('year') or query.has_key?('release_date'))
   query['title'] = /\w/ unless query.has_key? 'title'
   
+  if !query.has_key?('release_date') and 
+    (!query.has_key?('year') or Date.today.year != query['year'])
+    query['release_timestamp'] = {'$gt' => Date.today.strftime('%s').to_i}
+  end
+  
   sort = [{'poster_exists' => -1}]
-  sort << ((@empty_search or !@time_filter) ? 'title' : 'release_date')
+  sort << ((@empty_search or !@time_filter) ? 'title' : 'release_timestamp')
   
   @all = Movies.find(query).count
   @movies = Movies.find(query, {:limit => 60, :sort => sort,
