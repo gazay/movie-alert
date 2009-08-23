@@ -5,16 +5,11 @@ module Subscription
   
   def add_sub(targets, emails, twits)
     puts targets.to_a.join('/') + '----' + emails.join('/') + '----' + twits.join('/')
-    Subs.insert(:targets, :emails => emails, :twits => twits)
+    Subs.insert(:targets => targets, :emails => emails, :twits => twits)
   end
   
-  def add_email(targets, new_mail)    
-    puts targets.inspect
-    puts new_mail
-    if new_mail.match /^[a-zA-Z0-9]+
-      ([_.-]?[a-zA-Z0-9]+)?@[a-zA-Z0-9]+([_-]?[a-zA-Z0-9]+)*([.]{1})
-      [a-zA-Z0-9]+([.]?[a-zA-Z0-9]+)*$/
-      puts '!!!!'
+  def add_email(targets, new_mail)
+    if new_mail.match /^[a-zA-Z0-9]+([_.-]?[a-zA-Z0-9]+)?@[a-zA-Z0-9]+([_-]?[a-zA-Z0-9]+)*([.]{1})[a-zA-Z0-9]+([.]?[a-zA-Z0-9]+)*$/
       s = Subs.find(:targets)
       if s
         s.emails << new_email
