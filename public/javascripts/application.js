@@ -25,13 +25,15 @@ jQuery(function($) {
     $('#filters input[name=actor]').autocomplete('/suggest/actor')
     $('#filters input[name=director]').autocomplete('/suggest/actor')
     
-    use_search = function() {
+    getSearch = function() {
         var data = {}
         $('#filters input:not(.default),' + 
           ' #filters select:not(.default)').each(function() {
             var el = $(this)
             el.parents('li').addClass('used')
-            data[el.attr('name')] = el.val()
+            if ('' != el.val()) {
+                data[el.attr('name')] = el.val()
+            }
         })
         $('#dates .used').each(function() {
             var query = $(this).attr('href').substring(2)
@@ -45,10 +47,10 @@ jQuery(function($) {
         for (key in data) {
             address += encodeURI(key) + '=' + encodeURI(data[key]) + '&'
         }
-        $.address.value(address.substring(0, address.length-1))
+        return address.substring(0, address.length-1)
     }
     
-    update_search = function(data) {
+    updateSearch = function(data) {
         $('#filters .used').removeClass('used')
         for (key in data) {
             if ('year' == key || 'release_date' == key) {
@@ -60,10 +62,10 @@ jQuery(function($) {
             }
         }
         
-        reload_movies(data)
+        reloadMovies(data)
     }
     
-    reload_movies = function(data) {
+    reloadMovies = function(data) {
         $('#movies').addClass('loaded')
         
         $.get('/index.part', data, function(data) {
@@ -72,17 +74,17 @@ jQuery(function($) {
     }
     
     $('#filters select, #filters input').change(function() {
-        use_search()
+        $.address.value(getSearch())
     })
     
     $('#dates a').click(function() {
         $('#dates .used').removeClass('used')
         $(this).addClass('used')
-        use_search()
+        $.address.value(getSearch())
         return false
     })
     
     $.address.change(function(event) {
-        update_search(event.parameters)
+        updateSearch(event.parameters)
     })
 })

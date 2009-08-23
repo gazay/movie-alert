@@ -54,7 +54,7 @@ def params_to_query(params)
     when 'release_date'
       value = /^#{value}/
     when 'title'
-      value = RegExp.new(value)
+      value = /#{value}/
     when 'genre'
       entry = Genres.find_one(:name => value)
       value = entry
