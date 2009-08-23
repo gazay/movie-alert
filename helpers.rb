@@ -10,17 +10,11 @@ def params_to_query(params)
       value = /^#{value}/
     when 'title'
       value = /#{value}/i
-    when 'genre'
-      entry = Genres.find_one(:name => value)
-      value = entry
-      key = 'genres'
     when 'actor'
-      entry = Actors.find_one(:name => /#{value}/i)
-      value = entry
+      value = Actors[/^.*#{value}.*$/i]
       key = 'actors'
     when 'director'
-      entry = Directors.find_one(:name => /#{value}/i)
-      value = entry
+      value = Directors[/^.*#{value}.*$/i]
     end
     [key, value]
   end]
