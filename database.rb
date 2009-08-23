@@ -10,3 +10,8 @@ Movies = DB.collection 'movies'
 Genres = DB.collection 'genres'
 Actors = DB.collection 'actors'
 Directors = DB.collection 'directors'
+
+Movies.create_index 'genres'
+Movies.create_index 'actors'
+Movies.create_index 'director'
+Movies.create_index 'title'
