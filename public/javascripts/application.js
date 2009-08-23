@@ -37,6 +37,10 @@ jQuery(function($) {
         }
     })
     
+    $('#logo').click(function() {
+        $.address.value('')
+    })
+    
     $('#filters .icon').click(function() {
         var el = $(this)
         if (el.hasClass('clear')) {
