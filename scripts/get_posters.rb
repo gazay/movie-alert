@@ -31,4 +31,6 @@ EM.run do
       loop { break if get_poster(thumb, poster_path, id) == :success }
     end
   end
+
+  break
 end
