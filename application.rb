@@ -6,6 +6,7 @@ require 'haml'
 require 'database'
 require 'scripts/subscription'
 require 'helpers'
+require "cache.rb"
 
 get /^\/(index.(html|part))?$/ do
   @format = params['captures'] ? params['captures'][1] : 'html'
@@ -46,11 +47,9 @@ get '/subscribe' do
 end
 
 get '/suggest/actor' do
-  Actors.find({:name => /#{params['q']}/i},
-      {:limit => params['limit'].to_i}).to_a.map { |i| i['name']}.join("\n")
+  Actors.scan(/^.*#{params['q']}.*$/i)[0..params['limit'].to_i].join("\n")
 end
 
 get '/suggest/director' do
-  Directors.find({:name => /#{params['q']}/i},
-      {:limit => params['limit'].to_i}).to_a.map { |i| i['name']}.join("\n")
+  Directors.scan(/^.*#{params['q']}.*$/i)[params['limit'].to_i].join("\n")
 end
