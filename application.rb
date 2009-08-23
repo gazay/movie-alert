@@ -39,12 +39,15 @@ end
 
 get '/subscribe' do
   targets = {}
-  targets['title'] = params[:title] if params[:title]
-  targets['actor'] = params[:actor] if params[:actor]
-  targets['director'] = params[:director] if params[:director]
-  puts params[:title].inspect + '-' + params[:actor].inspect + '-' + params[:director].inspect
-  Subscription.add_email(targets, params[:subs_mail])
-  Subscription.add_twit(targets, params[:subs_twit]) 
+  targets['title'] = params[:title] if params[:title] != 'Title'
+  targets['actor'] = params[:actor] if params[:actor] != 'Actor'
+  targets['director'] = params[:director] if params[:director] != 'Director'
+  targets['genre'] = params[:genre] if params[:genre] != 'Genre'
+  targets = nil if targets == {}
+  if targets
+    Subscription.add_email(targets, params[:subs_mail])
+    Subscription.add_twit(targets, params[:subs_twit]) 
+  end
   redirect '/'
 end
 
