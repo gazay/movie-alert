@@ -31,9 +31,6 @@
           %input( type='submit' value='Subcribe to current filters' )/
       #description
         To subscribe select filter or pick file
-
-    #movies
-      = yield
     
     %ul#dates
       %li
@@ -47,3 +44,6 @@
                 %li
                   %a.month( href='/?release_date=#{year}-#{month}' )
                     = Date::MONTHNAMES[month]
+
+    #movies
+      = yield
