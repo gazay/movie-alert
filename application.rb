@@ -16,7 +16,7 @@ get /^\/(index.(html|part))?$/ do
   if query.empty?
     @movies = [] #TODO
   else
-    @movies = Movies.find(query, {:limit => 1000}).to_a
+    @movies = Movies.find(query).to_a
     @movies.sort! { |a, b|
       if not a['poster'] and b['poster']
         1
@@ -26,7 +26,7 @@ get /^\/(index.(html|part))?$/ do
         a['title'].to_s <=> b['title'].to_s
       end
     }.reject! { |i|
-      i['title'].nil? or i['title'].empty?
+      i['title'].nil? or i['title'] =~ /^\s*$/
     }
   end
   
