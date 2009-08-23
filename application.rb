@@ -6,7 +6,6 @@ require 'haml'
 require 'database'
 require 'scripts/subscription'
 require 'helpers'
-require "cache.rb"
 
 get /^\/(index.(html|part))?$/ do
   @format = params['captures'] ? params['captures'][1] : 'html'
