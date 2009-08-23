@@ -9,6 +9,7 @@ strong
   font-weight: bold
   
 #header
+  margin-bottom: 2ex
   ul
     text-align: center
     max-width: 100%
@@ -22,20 +23,24 @@ strong
       input[type='text']
         width= !filters_width
   #subscriptions
-    margin-left: -2em
     li
       padding-top: 0.5ex
       input[type='text']
         width: 9.5em
       input[type='submit']
         width: 5.5e
+  #description
+    text-align: center
+    padding: 0.5ex 0
+    height: 3.5ex
+    line-height: 3.5ex
 
 #dates
-  position: absolute
-  top: 10ex
-  right: 0
+  float: right
+  background: white
+  margin-top: 2ex
   li a
-    padding: 0.4ex 0.6em
+    padding: 0.4ex 0.8em 0.4ex 0.6em
     display: block
     text-decoration: none
     +border-top-left-radius(0.6ex)
@@ -43,6 +48,27 @@ strong
   ul li a
     padding-left: 1.3em
     font-size: 85%
+
+#movies
+  text-align: center
+  li
+    +inline-block
+    width= !poster_width
+    padding: 1ex
+    margin: 1ex 1em
+    text-align: center
+    vertical-align: top
+    img
+      +box-shadow(3px, 3px, 3px, #888)
+      margin-bottom: 0.6ex
+    h1
+      font-size: 110%
+      line-height: 130%
+    .release_date
+      color: gray
+      margin-top: 0.5ex
+  .old
+    +opacity(0.3)
 
 li.used, a.used
   background = !color
@@ -70,5 +96,10 @@ li.used, a.used
 select.default
   option
     color: black
-  option.default
+  option.label
     color: gray
+option.label
+  color: gray
+
+.hide
+  display: none

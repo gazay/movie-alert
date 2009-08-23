@@ -4,33 +4,33 @@
     %title Movie alert
     %link( rel='stylesheet' type='text/css' href='/stylesheets/application.css' )
     %script( type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js' )
-    %script( type='text/javascript' src='/javascripts/jquery.autocomplete.min.js' )  
+    %script( type='text/javascript' src='/javascripts/jquery.autocomplete.min.js' ) 
+    %script( type='text/javascript' src='/javascripts/jquery.address.min.js ' ) 
     %script( type='text/javascript' src='/javascripts/application.js' )   
   %body
     %form#header( action='/subscribe' )
       %ul#filters
         %li
-          %input.default( type='text' name='title' value='Title' )/
+          %input.filter.default( type='text' name='title' value='Title' )/
         %li
-          %input.default( type='text' name='actor' value='Actor' )/
+          %input.filter.default( type='text' name='actor' value='Actor' )/
         %li
-          %input.default( type='text' name='director' value='Director' )/
+          %input.filter.default( type='text' name='director' value='Director' )/
         %li
-          %select.default( name='genre' )
-            %option.default Genre
+          %select.filter.default( name='genre' )
+            %option.label Genre
             - Genres.find.each do |genre|
               %option= genre['name'].capitalize
     
-      %ul#subscriptions
+      %ul#subscriptions.hide
         %li#email
           %input.default( name='subs_mail' type='text' value='Your e-mail' )/
         %li#twitter
           %input.default( name='subs_twit' type='text' value='Your twitter name' )/
         %li
-          %input( type='submit' value='Subcribe' )/
-
-    #movies
-      = yield
+          %input( type='submit' value='Subcribe to current filters' )/
+      #description
+        To subscribe select filter or pick file
     
     %ul#dates
       %li
@@ -44,3 +44,6 @@
                 %li
                   %a.month( href='/?release_date=#{year}-#{month}' )
                     = Date::MONTHNAMES[month]
+
+    #movies
+      = yield

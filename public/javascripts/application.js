@@ -25,14 +25,14 @@ jQuery(function($) {
     $('#filters input[name=actor]').autocomplete('/suggest/actor')
     $('#filters input[name=director]').autocomplete('/suggest/actor')
     
-    reload_movies = function() {
-        $('#movies').addClass('loaded')
-        data = {}
-        $('#filters input:not(.default),' + 
-          ' #filters select:not(.default)').each(function() {
+    getSearch = function() {
+        var data = {}
+        $('#filters .filter:not(.default)').each(function() {
             var el = $(this)
             el.parents('li').addClass('used')
-            data[el.attr('name')] = el.val()
+            if ('' != el.val()) {
+                data[el.attr('name')] = el.val()
+            }
         })
         $('#dates .used').each(function() {
             var query = $(this).attr('href').substring(2)
@@ -42,19 +42,64 @@ jQuery(function($) {
             }
         })
         
+        var address = '/?'
+        for (key in data) {
+            address += encodeURI(key) + '=' + encodeURI(data[key]) + '&'
+        }
+        return address.substring(0, address.length-1)
+    }
+    
+    updateSearch = function(data) {
+        $('#filters .used').removeClass('used')
+        for (key in data) {
+            if ('year' == key || 'release_date' == key) {
+                $('#dates .used').removeClass('used')
+                $('a[href="/?' + key + '=' + data[key] + '"]').addClass('used')
+            }  else {
+                $('#filters [name=' + key + ']').val(data[key]).
+                        removeClass('default').parents('li').addClass('used')
+            }
+        }
+        
+        reloadMovies(data)
+    }
+    
+    reloadMovies = function(data) {
+        $('#movies ul').addClass('old').css('background', 'white')
+        
         $.get('/index.part', data, function(data) {
-            $('#movies').empty().removeClass('loaded').append(data)
+            $('#movies').prepend(data)
+            speed = $('#movies ul:not(.old)').height() / 1.6
+            $('#movies ul:not(.old)').hide()
+            
+            
+            $('#movies ul:not(.old)').slideDown(speed)
+            $('#movies ul.old').slideUp(speed, function() {
+                $('#movies').remove('ul.old')
+            })
+            
+            if (0 != $('#header .filter:not(.default)').length) {
+                $('#subscriptions').show()
+                $('#description').hide()
+            } else {
+                $('#subscriptions').hide()
+                $('#description').show()
+            }
         }, 'html')
     }
     
     $('#filters select, #filters input').change(function() {
-        reload_movies()
+        $.address.value(getSearch())
     })
     
     $('#dates a').click(function() {
         $('#dates .used').removeClass('used')
         $(this).addClass('used')
-        reload_movies()
+        $.address.value(getSearch())
         return false
+    })
+    
+    $.address.change(function(event) {
+        updateSearch(event.parameters)
     })
 })

@@ -11,10 +11,23 @@ get /^\/(index.(html|part))?$/ do
   
   @release_months = Cache.find_one(:name => 'release_months')['value']
   query = params_to_query(params)
+  @year = !(query.has_key?('year') or query.has_key?('release_date'))
+  
   if query.empty?
     @movies = [] #TODO
   else
-    @movies = Movies.find(query, {:limit => 1000})
+    @movies = Movies.find(query).to_a
+    @movies.sort! { |a, b|
+      if not a['poster'] and b['poster']
+        1
+      elsif a['poster'] and not b['poster']
+        -1
+      else
+        a['title'].to_s <=> b['title'].to_s
+      end
+    }.reject! { |i|
+      i['title'].nil? or i['title'] =~ /^\s*$/
+    }
   end
   
   if 'part' == format
@@ -55,7 +68,7 @@ def params_to_query(params)
     when 'release_date'
       value = /^#{value}/
     when 'title'
-      value = RegExp.new(value)
+      value = /#{value}/
     when 'genre'
       entry = Genres.find_one(:name => value)
       value = entry
@@ -70,4 +83,29 @@ def params_to_query(params)
     end
     [key, value]
   end]
+end
+
+def poster_thumb(poster_url, width, height)
+  poster_url[0..-5] + "._V1._SX#{width}_SY#{height}_.jpg"
+end
+
+def format_date(date, year)
+  date = Date.parse(date)
+  
+  day = if (11..13).include?(date.mday % 100)
+    "#{date.mday}th"
+  else
+    case date.mday % 10
+    when 1; "#{date.mday}st"
+    when 2; "#{date.mday}nd"
+    when 3; "#{date.mday}rd"
+    else "#{date.mday}th"
+    end
+  end
+  
+  if year
+    date.strftime("#{day} of %B, %Y")
+  else
+    date.strftime("#{day} of %B")
+  end
 end

@@ -11,6 +11,7 @@ last_year = nil
 Movies.find.each do |movie|
   i += 1
   puts "#{i}/#{count}"
+  next if movie['title'].nil? or movie['title'] =~ /^\s*$/
   if movie['release_date']
     dates << [movie['release_date'][0..3], movie['release_date'][5..6]]
   end
