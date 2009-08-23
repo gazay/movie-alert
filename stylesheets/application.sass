@@ -33,7 +33,9 @@ strong
 #dates
   position: absolute
   top: 10ex
+  width= !dates_width
   right: 0
+  background: white
   li a
     padding: 0.4ex 0.6em
     display: block
@@ -45,15 +47,22 @@ strong
     font-size: 85%
 
 #movies
+  margin-right= !dates_width
+  text-align: center
+  margin-top: 2ex
   li
     +inline-block
     width= !poster_width
     padding: 1ex
-    margin: 1em
+    margin: 0.5em 1em
+    text-align: center
+    vertical-align: top
+    img
+      +box-shadow(3px, 3px, 3px, #888)
+      margin-bottom: 0.6ex
     h1
-      font-size: 120%
+      font-size: 110%
       line-height: 130%
-      text-align: center
 
 li.used, a.used
   background = !color
