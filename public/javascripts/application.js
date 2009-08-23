@@ -67,7 +67,7 @@ jQuery(function($) {
     }
     
     reloadMovies = function(data, animation) {
-        $('#movies ul').addClass('old').css('background', 'white')
+        $('#movies ul, .empty').addClass('old')
         
         $.get('/index.part', data, function(content) {
             $('.empty, .next, .next_offset').remove()
