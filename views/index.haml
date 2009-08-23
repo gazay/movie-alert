@@ -19,6 +19,7 @@
             .control
               %a.close( href='#' ) Close
               %form( action='/subscribe' )
+                %input{ :type => 'hidden', :name=> 'imdb_id', :value => movie['imdb_id'] }/
                 %input.default( name='subs_mail' type='text' value='Your e-mail' )/
                 %input.default( name='subs_twit' type='text' value='Your twitter name' )/
                 %input( type='submit' value='Subcribe to movie' )/
