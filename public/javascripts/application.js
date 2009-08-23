@@ -13,13 +13,28 @@ jQuery(function($) {
         }
     })
     
-    $('#filters select[name=genre]').change(function() {
+    $('#filters input').focus(function() {
+        $(this).prev().addClass('writing').
+                attr('title', 'Press Enter to use filter')
+    }).blur(function() {
+        $(this).prev().removeClass('writing').attr('title', '')
+    }).keydown(function(event) {
+        if (13 == event.keyCode) {
+            $(this).blur()
+            $.address.value(getSearchAddress())
+            return false
+        }
+    })
+    
+    $('#filters select').change(function() {
         var el = $(this)
         if (0 == el.attr('selectedIndex')) {
             el.addClass('default').parents('li').removeClass('used')
         } else {
             el.removeClass('default').parents('li').addClass('used')
         }
+    }).change(function() {
+        $.address.value(getSearchAddress())
     })
     
     $('#filters input[name=actor]').autocomplete('/suggest/actor')
@@ -96,10 +111,6 @@ jQuery(function($) {
             }
         }, 'html')
     }
-    
-    $('#filters select, #filters input').change(function() {
-        $.address.value(getSearchAddress())
-    })
     
     $('#dates a').click(function() {
         $('#dates .used').removeClass('used')
