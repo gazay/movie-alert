@@ -70,7 +70,6 @@ jQuery(function($) {
         $.get('/index.part', data, function(data) {
             $('#movies').prepend(data)
             speed = $('#movies ul:not(.old)').height() / 1.6
-            $('#movies ul:not(.old)').hide()
             
             
             $('#movies ul:not(.old)').slideDown(speed)

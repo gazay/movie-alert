@@ -7,23 +7,19 @@ require 'database'
 require 'scripts/subscription'
 
 get /^\/(index.(html|part))?$/ do
-  format = params['captures'] ? params['captures'][1] : 'html'
+  @format = params['captures'] ? params['captures'][1] : 'html'
   
   @release_months = Cache.find_one(:name => 'release_months')['value']
   query = params_to_query(params)
   @time_filter = !(query.has_key?('year') or query.has_key?('release_date'))
   query['title'] = /\w/ unless query.has_key? 'title'
   
-  if query.empty?
-    @movies = Movies.find(query, {:limit => 100, :sort => {'poster' => 1, 'title' => 1 }}).to_a
-#    @movies.sort! { |a, b|
-#      a['poster'] <=> b['poster']
-#    }.reject! { |i|
-#      i['title'].nil? or i['title'] =~ /^\s*$/
-#    }
-  end
+  sort = [{'poster_exists' => -1}]
+  sort << (@time_filter ? 'title' : 'release_date')
   
-  if 'part' == format
+  @movies = Movies.find(query, {:limit => 100, :sort => sort}).to_a
+
+  if 'part' == @format
     haml :index, :layout => false
   else
     haml :index
@@ -103,4 +99,8 @@ def format_date(date, year)
   else
     date.strftime("#{day} of %B")
   end
+end
+
+def hide_if_part(format)
+  'part' == format ? 'hide' : ''
 end
