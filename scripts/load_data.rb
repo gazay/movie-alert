@@ -5,6 +5,8 @@ require File.join(File.dirname(__FILE__), '..', 'database')
 gem 'porras-imdb'
 require 'imdb'
 
+DB_NAME = 'fresh-data'
+
 ids_file = ARGV.first
 ids = File.readlines(ids_file)
 

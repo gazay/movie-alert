@@ -1,7 +1,8 @@
 require 'rubygems'
 require 'mongo'
 
-DB = Mongo::Connection.new('97.107.138.149').db('movie-alert')
+DB_NAME = 'movie-alert' unless Object.const_defined? 'DB_NAME'
+DB = Mongo::Connection.new('97.107.138.149').db DB_NAME
 
 Subs = DB.collection 'subs'
 Cache = DB.collection 'cache'
