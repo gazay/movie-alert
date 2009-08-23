@@ -40,7 +40,7 @@ end
 get '/subscribe' do
   targets = {}
   targets['title'] = params[:title] if params[:title] != 'Title'
-  targets['imdb_id'] = params[:imdb_id] if params[:imdb_id]
+  targets['imdb_id'] = params[:imdb_id].to_i if params[:imdb_id]
   targets['actor'] = params[:actor] if params[:actor] != 'Actor'
   targets['director'] = params[:director] if params[:director] != 'Director'
   targets['genre'] = params[:genre] if params[:genre] != 'Genre'
