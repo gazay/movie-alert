@@ -1,28 +1,38 @@
 jQuery(function($) {
-    $('input.default').focus(function() {
-        var el = $(this)
-        if (el.hasClass('default')) {
-            el.data('defaultValue', el.val()).removeClass('default').val('').
-                    parents('li').addClass('used')
-        }
-    }).blur(function() {
-        var el = $(this)
-        if ('' == el.val()) {
-            el.addClass('default').val(el.data('defaultValue')).
-                    parents('li').removeClass('used')
-        }
-    })
-    
     $('#filters input').focus(function() {
-        $(this).prev().addClass('writing').
+        $(this).prev().removeClass('clear').addClass('writing').
                 attr('title', 'Press Enter to use filter')
     }).blur(function() {
-        $(this).prev().removeClass('writing').attr('title', '')
+        var el = $(this).prev()
+        el.removeClass('writing').attr('title', '')
+        if ('' != $(this).val()) {
+            el.addClass('clear').attr('title', 'Clear filter')
+        }
     }).keydown(function(event) {
         if (13 == event.keyCode) {
             $(this).blur()
             $.address.value(getSearchAddress())
             return false
+        }
+    })
+    
+    $('input.default').focus(function() {
+        var el = $(this)
+        if (el.hasClass('default')) {
+            el.data('defaultValue', el.val()).removeClass('default').val('')
+        }
+    }).blur(function() {
+        var el = $(this)
+        if ('' == el.val()) {
+            el.addClass('default').val(el.data('defaultValue'))
+        }
+    })
+    
+    $('#filters .icon').click(function() {
+        var el = $(this)
+        if (el.hasClass('clear')) {
+            el.next().val('')
+            $.address.value(getSearchAddress())
         }
     })
     
@@ -68,7 +78,7 @@ jQuery(function($) {
         return address.substring(0, address.length-1)
     }
     
-    updateSearch = function(data, animation) {
+    updateFilters = function(data) {
         $('#filters .used').removeClass('used')
         for (key in data) {
             if ('year' == key || 'release_date' == key) {
@@ -123,12 +133,12 @@ jQuery(function($) {
     $.address.change(function(event) {
         if (first) {
             if (0 != event.parameterNames.length) {
-                updateSearch(event.parameters)
+                updateFilters(event.parameters)
                 reloadMovies(event.parameters, false)
             }
             first = false
         } else {
-            updateSearch(event.parameters)
+            updateFilters(event.parameters)
             reloadMovies(event.parameters, true)
         }
     })
