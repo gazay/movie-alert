@@ -20,10 +20,6 @@ def params_to_query(params)
   end]
 end
 
-def poster_thumb(poster_url, width, height)
-  poster_url[0..-5] + "._V1._SX#{width}_SY#{height}_.jpg"
-end
-
 def format_date(date, year)
   date = Date.parse(date)
   
