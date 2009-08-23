@@ -26,7 +26,7 @@
         %li
           %select.filter.default( name='genre' )
             %option.label Genre
-            - Genres.find.each do |genre|
+            - Genres.each do |genre|
               %option= genre['name'].capitalize
     
       %ul#subscriptions.hide
