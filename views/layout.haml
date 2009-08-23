@@ -28,8 +28,8 @@
         %li
           %select.filter.default( name='genre' )
             %option.label Genre
-            - Genres.each do |genre|
-              %option= genre.capitalize
+            - Genres.find.each do |genre|
+              %option= genre['name'].capitalize
     
       %ul#subscriptions.hide
         %li#email

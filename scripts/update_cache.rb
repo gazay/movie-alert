@@ -39,6 +39,6 @@ end
 
 Cache.insert :name => 'release_months', :value => months
 
-genres.to_a.each { |i| Genres.insert i }
-directors.to_a.each { |i| Directors.insert i }
-actors.to_a.each { |i| Actors.insert i }
+genres.to_a.each { |i| Genres.insert :name => i }
+directors.to_a.each { |i| Directors.insert :name => i }
+actors.to_a.each { |i| Actors.insert :name => i }

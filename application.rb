@@ -47,9 +47,11 @@ get '/subscribe' do
 end
 
 get '/suggest/actor' do
-  Actors.scan(/^.*#{params['q']}.*$/i)[0..params['limit'].to_i].join("\n")
+  Actors.find({:name => /#{params['q']}/i }, 
+      { :limit => params['limit'].to_i }).to_a.map { |i| i['name']}.join("\n")
 end
 
 get '/suggest/director' do
-  Directors.scan(/^.*#{params['q']}.*$/i)[params['limit'].to_i].join("\n")
+  Directors.find({:name => /#{params['q']}/i, }
+      { :limit => params['limit'].to_i }).to_a.map { |i| i['name']}.join("\n")
 end

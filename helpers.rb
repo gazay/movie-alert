@@ -11,10 +11,12 @@ def params_to_query(params)
     when 'title'
       value = /#{value}/i
     when 'actor'
-      value = Actors[/^.*#{value}.*$/i]
+      value = /#{value}/i
       key = 'actors'
+    when 'genre'
+      key = 'genres'
     when 'director'
-      value = Directors[/^.*#{value}.*$/i]
+      value = /#{value}/i
     end
     [key, value]
   end]
