@@ -2,16 +2,18 @@
   %ul{ :class => hide_if_part(@format) }
     - @movies.each do |movie|
       %li( id="movie-#{movie['imdb_id']}" )
-        .info.hide
+        .info
           .director
-            %label Director
+            %label Director:
             = #movie['director']['name']
           .actors
-            %label Actors
+            %label Actors:
             = #movie['actors'].map { |i| i['name'] }.join(', ')
           .director
-            %label Genres
+            %label Genres:
             = #movie['genres'].map { |i| i['name'] }.join(', ')
+          .plot
+            = movie['plot']
         - if movie['poster']
           %img{ :src => poster_thumb(movie['poster'], 150, 200) }/
         %h1= movie['title']

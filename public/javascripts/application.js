@@ -114,4 +114,17 @@ jQuery(function($) {
             reloadMovies(event.parameters, true)
         }
     })
+    
+    $('#movies li').live('click', function() {
+        var el = $(this).toggleClass('open')
+        if (el.hasClass('open')) {
+            el.animate({paddingRight: '1em'}, 100, function() {
+                el.animate({paddingRight: '16em'}, 500)
+                el.children('.info').animate({width: 'show'}, 500)
+            })
+        } else {
+            el.animate({paddingRight: '0.5em'}, 500)
+            el.children('.info').animate({width: 'hide'}, 500)
+        }
+    })
 })
