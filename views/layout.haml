@@ -7,28 +7,27 @@
     %script( type='text/javascript' src='/javascripts/jquery.autocomplete.min.js' )  
     %script( type='text/javascript' src='/javascripts/application.js' )   
   %body
-    #header
-      %form#filters( action='/' )
-        %ul
-          %li
-            %input.default( type='text' name='title' value='Title' )/
-          %li
-            %input.default( type='text' name='actor' value='Actor' )/
-          %li
-            %input.default( type='text' name='director' value='Director' )/
-          %li
-            %select.default( name='genre' )
-              %option.default Genre
-              - Genres.find.each do |genre|
-                %option= genre['name'].capitalize
-      %form#subscriptions( action='/subscribe' )
-        %ul
-          %li#email
-            %input.default( name='subs_mail' type='text' value='Your e-mail' )/
-          %li#twitter
-            %input.default( name='subs_twit' type='text' value='Your twitter name' )/
-          %li
-            %input( type='submit' value='Subcribe' )/
+    %form#header( action='/subscribe' )
+      %ul#filters
+        %li
+          %input.default( type='text' name='title' value='Title' )/
+        %li
+          %input.default( type='text' name='actor' value='Actor' )/
+        %li
+          %input.default( type='text' name='director' value='Director' )/
+        %li
+          %select.default( name='genre' )
+            %option.default Genre
+            - Genres.find.each do |genre|
+              %option= genre['name'].capitalize
+    
+      %ul#subscriptions
+        %li#email
+          %input.default( name='subs_mail' type='text' value='Your e-mail' )/
+        %li#twitter
+          %input.default( name='subs_twit' type='text' value='Your twitter name' )/
+        %li
+          %input( type='submit' value='Subcribe' )/
 
     #movies
       = yield
