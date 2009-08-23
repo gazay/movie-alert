@@ -10,21 +10,30 @@ jQuery(function($) {
         }
     }).keydown(function(event) {
         if (13 == event.keyCode) {
-            $(this).blur()
+            var el = $(this)
+            el.blur()
+            if ('' == el.val()) {
+                el.addClass('default').val(el.data('defaultValue'))
+            }
             $.address.value(getSearchAddress())
             return false
         }
     })
     
-    $('input.default').focus(function() {
+    $('input.default').each(function() {
+        var el = $(this)
+        el.data('defaultValue', el.val())
+    }).focus(function() {
         var el = $(this)
         if (el.hasClass('default')) {
-            el.data('defaultValue', el.val()).removeClass('default').val('')
+            el.removeClass('default').val('')
         }
     }).blur(function() {
         var el = $(this)
-        if ('' == el.val()) {
-            el.addClass('default').val(el.data('defaultValue'))
+        if (!el.parent('li').hasClass('used')) {
+            if ('' == el.val()) {
+                el.addClass('default').val(el.data('defaultValue'))
+            }
         }
     })
     
