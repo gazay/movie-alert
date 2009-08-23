@@ -34,9 +34,7 @@ dates.each do |year, month|
   months[year] << month
 end
 
-p genres.to_a
-
-#Cache.insert :name => 'release_months', :value => months
-#Cache.insert :name => 'directors', :value => directors.to_a
-#Cache.insert :name => 'actors', :value => actors.to_a
-#Cache.insert :name => 'genres', :value => genres.to_a
+Cache.insert :name => 'release_months', :value => months
+Cache.insert :name => 'directors', :value => directors.to_a
+Cache.insert :name => 'actors', :value => actors.to_a
+Cache.insert :name => 'genres', :value => genres.to_a

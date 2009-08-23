@@ -8,6 +8,10 @@ Subs = DB.collection 'subs'
 Cache = DB.collection 'cache'
 Movies = DB.collection 'movies'
 
+Actors = Cache.find_one(:name => 'actors')
+Directors = Cache.find_one(:name => 'directors')
+Genres = Cache.find_one(:name => 'genres')
+
 Movies.create_index 'genres'
 Movies.create_index 'actors'
 Movies.create_index 'director'
