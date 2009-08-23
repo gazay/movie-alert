@@ -123,11 +123,12 @@ jQuery(function($) {
     })
     
     $('.next').show()
-    $('#movies .next').live('click', function() {
+    $('#movies .next input').live('click', function() {
         var data = getSearchData()
-        data['offset'] = $('#movies .next_offset').text()
+        $('.next').addClass('loading')
+        data['offset'] = $('#movies .next .offset').text()
         $.get('/index.part', data, function(content) {
-            $('#movies .next, #movies .next_offset').remove()
+            $('#movies .next').remove()
             $('#movies').append(content)
             var speed = $('#movies ul:last').height() / 1.6
             $('#movies ul:last').slideDown(speed, function() {
