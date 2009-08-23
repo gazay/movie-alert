@@ -24,7 +24,7 @@ get /^\/(index.(html|part))?$/ do
   @movies = Movies.find(query, {:limit => 60, :sort => sort,
                                 :offset => @offset}).to_a
 
-  if 'part' == @format
+  if request.xhr?
     haml :index, :layout => false
   else
     haml :index
