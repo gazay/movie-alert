@@ -41,7 +41,7 @@ jQuery(function($) {
     
     $('#logo').click(function() {
         $('#filters input').each(function() { setDeafultValue($(this), false) })
-        $('#filters select').val('Genre')
+        $('#filters select').val('Genre').addClass('default')
         $.address.value('')
     })
     
