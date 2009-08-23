@@ -187,18 +187,4 @@ jQuery(function($) {
         })
         return false
     })
-    
-    $.tools.addTipEffect("slidedown",
-        function() {  
-            var opacity = this.getConf().opacity; 
-            this.getTip().css({opacity:0}).animate({top: '+=15', opacity:opacity}, 300).show(); 
-        },  
-        function() { 
-            this.getTip().animate({top: '+=15', opacity:0}, 300, function() {  
-                    $(this).hide().animate({top: '+=30'}, 0); 
-            }); 
-        } 
-    );
-    
-    $('#movies li').tooltip({ effect: 'slidedown' })
 })
