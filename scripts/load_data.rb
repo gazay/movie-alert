@@ -22,13 +22,15 @@ j = 0
 all = ids.length - 1
 
 ids.each do |id|
+  j += 1
+
   id = id.strip
   next if id.empty?
+  next unless Movies.find_one('imdb_id' => id)
   
   movie = ImdbMovie.new(id)
   movie.get_data
   
-  j += 1
   
   unless movie.director
     puts "#{i}/#{j}/#{all}"
