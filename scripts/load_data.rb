@@ -51,17 +51,22 @@ ids.each do |id|
   puts "    Release:  #{release_date}"
   puts "    Plot:     #{plot}"
 
+  release_timestamp = nil
+  if !movie.release_date.nil? and !movie.release_date.empty?
+    release_timestamp Date.parse(movie.release_date).strftime('%s').to_i
+  end
   
   poster_exists = !movie.poster.nil? and !movie.poster.empty?
   
-  Movies.insert 'imdb_id'       => id,
-                'title'         => movie.title,
-                'director'      => movie.director,
-                'actors'        => movie.cast_members,
-                'genres'        => movie.genres,
-                'poster'        => movie.poster,
-                'poster_exists' => poster_exists,
-                'plot'          => plot,
-                'release_date'  => release_date,
-                'year'          => movie.year
+  Movies.insert 'imdb_id'           => id,
+                'title'             => movie.title,
+                'director'          => movie.director,
+                'actors'            => movie.cast_members,
+                'genres'            => movie.genres,
+                'poster'            => movie.poster,
+                'poster_exists'     => poster_exists,
+                'plot'              => plot,
+                'release_date'      => release_date,
+                'release_timestamp' => release_timestamp,
+                'year'              => movie.year
 end
