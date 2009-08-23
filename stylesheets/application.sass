@@ -16,7 +16,7 @@ a
 #header
   margin-bottom: 2ex
   #logo
-    background: url(/images/logo.png) no-repeat 50% 0
+    background: white url(/images/logo.png) no-repeat 50% 0
     padding-top: 67px
     margin: 0.7em 0.5em 0.5em 1em
     min-width: 64px
@@ -25,7 +25,7 @@ a
     float: left
     cursor: pointer
   #info
-    background: url(/images/info.png) no-repeat 50% 0
+    background: white url(/images/info.png) no-repeat 50% 0
     padding-top: 67px
     margin: 0.7em 1em 0.5em 0.5em
     min-width: 64px
@@ -66,11 +66,17 @@ a
         width: 9.5em
       input[type='submit']
         width: 5.5e
-  #description
+  #description, #flash
     text-align: center
     padding: 0.5ex 0
-    height: 3.5ex
-    line-height: 3.5ex
+    height: 2.7ex
+    line-height: 2.7ex
+  #flash
+    background-color= !color
+    color: white
+    width: 25em
+    margin: 0.4ex auto
+    +border-radius(0.6ex)
 
 #dates
   position: absolute

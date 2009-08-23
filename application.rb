@@ -27,9 +27,17 @@ get /^\/(index.(html|part))?$/ do
   sort << ((@empty_search or !@time_filter) ? 'title' : 'release_timestamp')
   
   @all = Movies.find(query).count
-  @movies = Movies.find(query, {:limit => 50, :sort => sort,
+  @movies = Movies.find(query, {:limit => 40, :sort => sort,
                                 :offset => @offset}).to_a
-
+  
+  if request.cookies['flash']
+    @flash = case request.cookies['flash']
+    when 'subscribed'
+      'We are notify you, when movies will be released.'
+     end
+     set_cookie('flash', '')
+  end
+  
   if request.xhr?
     haml :index, :layout => false
   else
@@ -37,7 +45,7 @@ get /^\/(index.(html|part))?$/ do
   end
 end
 
-get '/subscribe' do
+post '/subscribe' do
   targets = {}
   if params[:title] && params[:title] != 'Title'
     targets['title'] = params[:title]
@@ -54,8 +62,9 @@ get '/subscribe' do
   end
   targets = nil if targets == {}
   if targets
-    Subscription.add_email(targets, params[:subs_mail])
-    Subscription.add_twit(targets, params[:subs_twit]) 
+    result = Subscription.add_email(targets, params[:subs_mail]) ||
+        Subscription.add_twit(targets, params[:subs_twit]) 
+    set_cookie('flash', 'subscribed') if result
   end
   redirect '/'
 end

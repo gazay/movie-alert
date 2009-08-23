@@ -12,7 +12,7 @@
     %script( type='text/javascript' src='/javascripts/application_compressed.js' )
     %link( href='/favicon.ico' rel='shortcut icon' )
   %body
-    %form#header( action='/subscribe' )
+    %form#header( action='/subscribe' method='post' )
       #logo
         Movie Alert
       #info
@@ -42,9 +42,11 @@
           %input.default( name='subs_twit' type='text' value='Your twitter name' )/
         %li
           %input( type='submit' value='Subcribe to current filters' )/
-      #description
+      #description{ :class => @flash ? 'hide' : '' }
         To subscribe to movie releases select a filter <span class="arrow">↑</span> or pick a movie <span class="arrow">↓</span>
-    
+      - if @flash
+        #flash
+          = @flash
     %ul#dates
       %li
         %a.all.year.used( href='/' ) All

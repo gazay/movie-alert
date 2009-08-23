@@ -18,7 +18,7 @@
                 = trim_plot(movie['plot'])
             .control
               %a.close( href='#' ) Close
-              %form( action='/subscribe' )
+              %form( action='/subscribe' method='post' )
                 %input{ :type => 'hidden', :name=> 'imdb_id', :value => movie['imdb_id'] }/
                 %input.default( name='subs_mail' type='text' value='Your e-mail' )/
                 %input.default( name='subs_twit' type='text' value='Your twitter name' )/
