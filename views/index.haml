@@ -3,7 +3,19 @@
     - @movies.each do |movie|
       %li( id="movie-#{movie['imdb_id']}" )
         .panel
-          .wrapper            
+          .wrapper
+            .info
+              .director
+                %strong Director:
+                = movie['director']
+              .actors
+                %strong Actors:
+                = trim_actors(movie['actors'])
+              .genres
+                %strong Genres:
+                = movie['genres'].join(', ')
+              .plot
+                = trim_plot(movie['plot'])
             .control
               %a.close( href='#' ) Close
               %form( action='/subscribe' )
@@ -14,23 +26,11 @@
                   = "More on IMDb"
             .float_clear
         .card
-          = display_poster movie
+          - if movie['poster_exists']
+            %img{ :src => "http://movie-alert.r09.railsrumble.com/posters/#{movie['imdb_id']}.jpg", :alt => "Poster for movie #{movie['title']}" }/
           %h1= typographer(movie['title'])
           - if movie['release_date']
             .release_date= format_date(movie['release_date'], @time_filter)
-      .tooltip
-        .info
-          .director
-            %label Director:
-            = movie['director']
-          .actors
-            %label Actors:
-            = display_actors movie
-          .director
-            %label Genres:
-            = display_genres movie
-          .plot
-            = display_plot movie
   -if @all > @offset + @movies.count
     .next.hide
       .offset.hide= @offset + @movies.count

@@ -132,8 +132,6 @@ jQuery(function($) {
                 $('#movies .old').remove()
                 $('#movies ul').show()
             }
-            
-            $('#movies li').tooltip()
                             
             if (0 != $('#header .filter:not(.default)').length) {
                 $('#subscriptions').show()
@@ -180,8 +178,15 @@ jQuery(function($) {
     })
     
     $('#movies li:not(.open)').live('click', function() {
-        var el = $(this)
-        el.addClass('open').children('.panel').fadeIn(200)
+        var card = $(this)
+        var panel = card.children('.panel')
+        if ($(document).width() < (card.offset().left + panel.width() + 180)) {
+            panel.addClass('left')
+        } else {
+            panel.removeClass('left')
+        }
+        card.addClass('open')
+        panel.fadeIn(200)
     })
     $('#movies .close, #movies .open .card').live('click', function() {
         $(this).parents('li').children('.panel').fadeOut(200, function() {
@@ -189,18 +194,4 @@ jQuery(function($) {
         })
         return false
     })
-    
-    $.tools.addTipEffect("slidedown",   
-        function() {  
-            var opacity = this.getConf().opacity; 
-            this.getTip().css({opacity:0}).animate({top: '+=15', opacity:opacity}, 300).show(); 
-        },  
-        function() { 
-            this.getTip().animate({top: '+=15', opacity:0}, 300, function() {  
-                    $(this).hide().animate({top: '+=30'}, 0); 
-            }); 
-        } 
-    );
-    
-    $('#movies li').tooltip({ effect: 'slidedown' })
 })

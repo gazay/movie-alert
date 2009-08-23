@@ -114,8 +114,8 @@ a
     .panel
       display: none
       position: absolute
-      margin: -2px 0 0 150px
-      width= !movie_info_width + !movie_control_width + 3em
+      margin: -2px 0 0 148px
+      width= !movie_info_width + !movie_control_width + 2.5em
       padding-left: 1em
       .wrapper
         border= 2px "solid" !color
@@ -123,12 +123,23 @@ a
         +border-top-right-radius(0.6ex)
         +border-bottom-right-radius(0.6ex)
         background: white
+      .info
+        float: left
+        width= !movie_info_width
+        max-height= !movie_card_height
+        text-align: left
+        overflow: auto
+        padding: 0.5em
+        div
+          font-size: 80%
+        .plot
+          margin-top: 1ex
       .control
         float: right
         width= !movie_control_width
         height= !movie_card_height
         text-align: right
-        padding: 0.5em
+        padding: 0.5em 1em 0.5em 0
         .close
           text-decoration: none
           padding-left: 27px
@@ -144,6 +155,23 @@ a
           padding-left: 27px
           min-height: 22px
           background: url(/images/search.png) no-repeat 0 50%
+    .panel.left
+      margin= -2px 0 0 0-(!movie_info_width + !movie_control_width + 2.5em)
+      padding-right: 1em
+      .wrapper
+        +border-top-right-radius(0)
+        +border-bottom-right-radius(0)
+        +border-top-left-radius(0.6ex)
+        +border-bottom-left-radius(0.6ex)
+        border-left-width: 2px
+        border-right-width: 0
+      .info
+        float: right
+        text-align: right
+      .control
+        float: left
+        text-align: left
+        padding: 0.5em 0 0.5em 1em
     .card
       padding: 0.5em
   li:hover
@@ -155,8 +183,6 @@ a
     border= 2px "solid" !color
     min-height= !movie_card_height + 1em
     cursor: default
-    margin-right= !movie_info_width + !movie_control_width + 2.5em
-    +border-top-right-radius(0)
   .next
     margin: 1ex auto 3ex auto
     padding-left: 30px

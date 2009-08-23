@@ -52,31 +52,16 @@ def typographer(string)
          gsub(/(\w)'(\w)/, '\1’\2').gsub('...', '…')
 end
 
-def display_actors(movie)
-  string = movie['actors'].join(', ')
-  if string.size > 100
-    string[0..100] + '...'
+def trim_actors(actors)
+  if 3 < actors.length
+    actors[0..2].join(', ') + ', …'
   else
-    string
+    actors.join(', ')
   end
 end
 
-def display_genres(movie)
-  string = movie['genres'].join(', ')
-  if string.size > 100
-    string[0..100] + '...'
-  else
-    string
-  end
-end
-
-def display_plot(movie)
-  string = movie['plot']
-  if string.size > 300
-    string[0..100] + '...'
-  else
-    string
-  end
+def trim_plot(plot)
+  plot.size > 300 ? plot[0..100] + '…' : plot
 end
 
 def display_poster(movie)
