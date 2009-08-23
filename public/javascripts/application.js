@@ -132,8 +132,6 @@ jQuery(function($) {
                 $('#movies .old').remove()
                 $('#movies ul').show()
             }
-            
-            $('#movies li').tooltip()
                             
             if (0 != $('#header .filter:not(.default)').length) {
                 $('#subscriptions').show()
