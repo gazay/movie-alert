@@ -26,7 +26,7 @@ ids.each do |id|
 
   id = id.strip
   next if id.empty?
-  next unless Movies.find_one('imdb_id' => id)
+  next if Movies.find_one('imdb_id' => id)
   
   movie = ImdbMovie.new(id)
   movie.get_data
