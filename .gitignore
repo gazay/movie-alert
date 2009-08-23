@@ -5,3 +5,4 @@ nbproject
 .sass-cache
 *.css
 public/posters
+tmp
