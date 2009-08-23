@@ -23,7 +23,7 @@ jQuery(function($) {
     })
     
     $('#filters input[name=actor]').autocomplete('/suggest/actor')
-    $('#filters input[name=director]').autocomplete('/suggest/actor')
+    $('#filters input[name=director]').autocomplete('/suggest/director')
     
     getSearch = function() {
         var data = {}
@@ -75,7 +75,7 @@ jQuery(function($) {
             
             $('#movies ul:not(.old)').slideDown(speed)
             $('#movies ul.old').slideUp(speed, function() {
-                $('#movies').remove('ul.old')
+                $('#movies .old').remove()
             })
             
             if (0 != $('#header .filter:not(.default)').length) {

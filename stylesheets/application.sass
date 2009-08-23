@@ -36,7 +36,9 @@ strong
     line-height: 3.5ex
 
 #dates
-  float: right
+  position: absolute
+  right: 0
+  width= !dates_width
   background: white
   margin-top: 2ex
   li a
@@ -51,6 +53,7 @@ strong
 
 #movies
   text-align: center
+  margin-right= !dates_width
   li
     +inline-block
     width= !poster_width
@@ -58,6 +61,7 @@ strong
     margin: 1ex 1em
     text-align: center
     vertical-align: top
+    border: 2px solid white
     img
       +box-shadow(3px, 3px, 3px, #888)
       margin-bottom: 0.6ex
@@ -67,6 +71,10 @@ strong
     .release_date
       color: gray
       margin-top: 0.5ex
+  li:hover
+    +border-radius(0.6ex)
+    border= 2px solid !color
+    cursor: pointer
   .old
     +opacity(0.3)
 

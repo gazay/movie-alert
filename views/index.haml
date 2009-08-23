@@ -1,6 +1,16 @@
 %ul
   - @movies.each do |movie|
     %li( id="movie-#{movie['imdb_id']}" )
+      .info.hide
+        .director
+          %label Director
+          = #movie['director']['name']
+        .actors
+          %label Actors
+          = #movie['actors'].map { |i| i['name'] }.join(', ')
+        .director
+          %label Genre
+          = #movie['genre']['name']
       - if movie['poster']
         %img{ :src => poster_thumb(movie['poster'], 150, 200) }/
       %h1= movie['title']

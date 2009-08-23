@@ -16,7 +16,7 @@ get /^\/(index.(html|part))?$/ do
   if query.empty?
     @movies = [] #TODO
   else
-    @movies = Movies.find(query).to_a
+    @movies = Movies.find(query, {:limit => 500}).to_a
     @movies.sort! { |a, b|
       if not a['poster'] and b['poster']
         1
@@ -53,7 +53,6 @@ get '/suggest/actor' do
 end
 
 get '/suggest/director' do
-  puts params['q']
   Directors.find({:name => /#{params['q']}/i},
       {:limit => params['limit'].to_i}).to_a.map { |i| i['name']}.join("\n")
 end
@@ -73,11 +72,11 @@ def params_to_query(params)
       value = entry
       key = 'genres'
     when 'actor'
-      entry = Actors.find_one(:name => value)
+      entry = Actors.find_one(:name => /#{value}/)
       value = entry
       key = 'actors'
     when 'director'
-      entry = Directors.find_one(:name => value)
+      entry = Directors.find_one(:name => /#{value}/)
       value = entry
     end
     [key, value]
