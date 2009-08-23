@@ -5,13 +5,13 @@
         .info
           .director
             %label Director:
-            = #movie['director']['name']
+            = #Directors.find_one(movie['director'])['name']
           .actors
             %label Actors:
-            = #movie['actors'].map { |i| i['name'] }.join(', ')
+            = #movie['actors'].map { |i| Actors.find_one(i)['name'] }.join(', ')
           .director
             %label Genres:
-            = #movie['genres'].map { |i| i['name'] }.join(', ')
+            = #movie['genres'].map { |i| Genres.find_one(i)['name'] }.join(', ')
           .plot
             = movie['plot']
         - if movie['poster']
