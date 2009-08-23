@@ -174,10 +174,8 @@ jQuery(function($) {
         $.get('/index.part', data, function(content) {
             $('#movies .next').remove()
             $('#movies').append(content)
-            var speed = $('#movies ul:last').height() / 1.6
-            $('#movies ul:last').slideDown(speed, function() {
-                $('.next').show()
-            })
+            $('#movies ul:last').show()
+            $('.next').show()
         })
     })
     
