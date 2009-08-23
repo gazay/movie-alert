@@ -1,4 +1,10 @@
 jQuery(function($) {
+    setDeafultValue = function(el, check) {
+        if (!check || '' == el.val()) {
+            el.addClass('default').val(el.data('defaultValue'))
+        }
+    }
+    
     $('#filters input').focus(function() {
         $(this).prev().removeClass('clear').addClass('writing').
                 attr('title', 'Press Enter to use filter')
@@ -12,9 +18,7 @@ jQuery(function($) {
         if (13 == event.keyCode) {
             var el = $(this)
             el.blur()
-            if ('' == el.val()) {
-                el.addClass('default').val(el.data('defaultValue'))
-            }
+            setDeafultValue(el, true)
             $.address.value(getSearchAddress())
             return false
         }
@@ -31,13 +35,13 @@ jQuery(function($) {
     }).blur(function() {
         var el = $(this)
         if (!el.parent('li').hasClass('used')) {
-            if ('' == el.val()) {
-                el.addClass('default').val(el.data('defaultValue'))
-            }
+            setDeafultValue(el, true)
         }
     })
     
     $('#logo').click(function() {
+        $('#filters input').each(function() { setDeafultValue($(this), false) })
+        $('#filters select').val('Genre')
         $.address.value('')
     })
     
@@ -93,10 +97,11 @@ jQuery(function($) {
     }
     
     updateFilters = function(data) {
-        $('#filters .used').removeClass('used')
+        $('.used').removeClass('used')
+        var dateAll = $('#dates .all').addClass('used')
         for (key in data) {
             if ('year' == key || 'release_date' == key) {
-                $('#dates .used').removeClass('used')
+                dateAll.removeClass('used')
                 $('a[href="/?' + key + '=' + data[key] + '"]').addClass('used')
             }  else {
                 $('#filters [name=' + key + ']').val(data[key]).

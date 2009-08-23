@@ -43,7 +43,7 @@
     
     %ul#dates
       %li
-        %a.year.used( href='/' ) All
+        %a.all.year.used( href='/' ) All
       - @release_months.each_pair do |year, months|
         %li
           %a.year( href="/?year=#{year}" )= year
