@@ -17,3 +17,5 @@
         %h1= movie['title']
         - if movie['release_date']
           .release_date= format_date(movie['release_date'], @year)
+- else
+  %h1.empty No movies
