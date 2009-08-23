@@ -22,7 +22,7 @@
                 %input.default( name='subs_mail' type='text' value='Your e-mail' )/
                 %input.default( name='subs_twit' type='text' value='Your twitter name' )/
                 %input( type='submit' value='Subcribe to movie' )/
-                %a.imdb{ :href => "http://www.imdb.com/title/#{movie['imdb_id']}" }
+                %a.imdb{ :href => "http://www.imdb.com/title/tt#{movie['imdb_id']}" }
                   = "More on IMDb"
             .float_clear
         .card
