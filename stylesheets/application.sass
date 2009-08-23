@@ -18,7 +18,7 @@ a
   #logo
     background: url(/images/logo.png) no-repeat 50% 0
     padding-top: 67px
-    margin: 0.7em 0.5em 0.5em 0.7em
+    margin: 0.7em 0.5em 0.5em 1em
     min-width: 64px
     text-align: center
     +inline-block
@@ -85,8 +85,6 @@ a
   clear: both
   li
     +inline-block
-    width= !poster_width
-    padding: 0.5em
     margin: 1ex 1em
     text-align: center
     vertical-align: top
@@ -95,22 +93,58 @@ a
     +border-radius(0.6ex)
     img
       +box-shadow(3px, 3px, 3px, #888)
-      margin-bottom: 0.6ex
+      margin-bottom: 1ex
     h1
       font-size: 110%
       line-height: 130%
+      width= !poster_width
     .release_date
       color: gray
       margin-top: 0.5ex
-    .info
-      position: absolute
-      margin-left: 150px
-      padding-left: 1em
-      width: 15em
+    .panel
       display: none
-      text-align: left
-      height: 15ex
-      overflow: hide
+      position: absolute
+      margin: -2px 0 0 150px
+      width= !movie_info_width + !movie_control_width + 3em
+      padding-left: 1em
+      .wrapper
+        border= 2px "solid" !color
+        border-left-width: 0
+        +border-top-right-radius(0.6ex)
+        +border-bottom-right-radius(0.6ex)
+        background: white
+      .info
+        float: left
+        width= !movie_info_width
+        max-height= !movie_card_height
+        text-align: left
+        overflow: auto
+        padding: 0.5em
+        .plot
+          margin-top: 1ex
+      .control
+        float: right
+        width= !movie_control_width
+        height= !movie_card_height
+        text-align: right
+        padding: 0.5em
+        .close
+          text-decoration: none
+          padding-left: 27px
+          min-height: 22px
+          background: url(/images/close.png) no-repeat 0 0
+          +inline-block
+        input
+          margin-top: 0.8ex
+          width: 100%
+        .imdb
+          +inline-block
+          margin-top: 1ex
+          padding-left: 27px
+          min-height: 22px
+          background: url(/images/search.png) no-repeat 0 50%
+    .card
+      padding: 0.5em
   li:hover
     border= 2px "solid" !color
     cursor: pointer
@@ -118,7 +152,10 @@ a
     +opacity(0.3)
   li.open
     border= 2px "solid" !color
-    min-height: 15ex
+    min-height= !movie_card_height + 1em
+    cursor: default
+    margin-right= !movie_info_width + !movie_control_width + 2.5em
+    +border-top-right-radius(0)
   .next
     margin: 1ex auto 3ex auto
     padding-left: 30px
@@ -166,3 +203,6 @@ option.label
 
 .hide
   display: none
+
+.float_clear
+  clear: both

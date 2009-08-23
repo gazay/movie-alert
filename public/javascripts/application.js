@@ -161,16 +161,14 @@ jQuery(function($) {
         })
     })
     
-    $('#movies li').live('click', function() {
-        var el = $(this).toggleClass('open')
-        if (el.hasClass('open')) {
-            el.animate({paddingRight: '1em'}, 100, function() {
-                el.animate({paddingRight: '16em'}, 500)
-                el.children('.info').animate({width: 'show'}, 500)
-            })
-        } else {
-            el.animate({paddingRight: '0.5em'}, 500)
-            el.children('.info').animate({width: 'hide'}, 500)
-        }
+    $('#movies li:not(.open)').live('click', function() {
+        var el = $(this)
+        el.addClass('open').children('.panel').fadeIn(200)
+    })
+    $('#movies .close, #movies .open .card').live('click', function() {
+        $(this).parents('li').children('.panel').fadeOut(200, function() {
+            $(this).parents('li').removeClass('open')
+        })
+        return false
     })
 })
