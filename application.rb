@@ -1,8 +1,6 @@
 #!/usr/bin/env ruby
 
-require 'rubygems'
-require 'sinatra'
-require 'haml'
+require 'dependencies'
 require 'database'
 require 'scripts/subscription'
 require 'helpers'
