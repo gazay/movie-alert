@@ -1,10 +1,3 @@
-#!/usr/bin/env ruby
-
-require 'dependencies'
-require 'database'
-require 'scripts/subscription'
-require 'helpers'
-
 get /^\/(index.(html|part))?$/ do
   @format = params['captures'] ? params['captures'][1] : 'html'
   @release_months = Cache.find_one(:name => 'release_months')['value']
