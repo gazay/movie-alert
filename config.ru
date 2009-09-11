@@ -1,6 +1,6 @@
 require 'dependencies'
 require 'config/compass'
-require 'database'
+require 'config/database'
 require 'scripts/subscription'
 require 'helpers'
 require 'application'
