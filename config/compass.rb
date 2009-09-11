@@ -2,7 +2,7 @@ Compass.configuration do |config|
   config.project_type    = :stand_alone
   config.http_path       = '/'
   config.css_dir         = 'public/stylesheets'
-  config.sass_dir        = 'stylesheets'
+  config.sass_dir        = 'app/stylesheets'
   config.images_dir      = 'public'
   config.javascripts_dir = 'public/javascripts'
 end

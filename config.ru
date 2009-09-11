@@ -2,8 +2,8 @@ require 'config/dependencies'
 require 'config/compass'
 require 'config/database'
 require 'scripts/subscription'
-require 'helpers'
-require 'application'
+require 'app/helpers'
+require 'app/application'
 
 configure :development do  
   before do    
@@ -15,5 +15,8 @@ configure :production do
   Sass::Plugin.options[:style] = :compressed
   Sass::Plugin.update_stylesheets
 end
+
+set :views,   'app/views'
+set :public,  'public'
 
 run Sinatra::Application

@@ -1,0 +1,40 @@
+- unless @movies.empty?
+  %ul{ :class => hide_if_part(@format) }
+    - @movies.each do |movie|
+      %li( id="movie-#{movie['imdb_id']}" )
+        .panel
+          .wrapper
+            .info
+              .director
+                %strong Director:
+                = movie['director']
+              .actors
+                %strong Actors:
+                = trim_actors(movie['actors'])
+              .genres
+                %strong Genres:
+                = movie['genres'].join(', ')
+              .plot
+                = trim_plot(movie['plot'])
+            .control
+              %a.close( href='#' ) Close
+              %form( action='/subscribe' method='post' )
+                %input{ :type => 'hidden', :name=> 'imdb_id', :value => movie['imdb_id'] }/
+                %input.default( name='subs_mail' type='text' value='Your e-mail' )/
+                %input.default( name='subs_twit' type='text' value='Your twitter name' )/
+                %input( type='submit' value='Subcribe to movie' )/
+                %a.imdb{ :href => "http://www.imdb.com/title/tt#{movie['imdb_id']}" }
+                  = "More on IMDb"
+            .float_clear
+        .card
+          = display_poster movie
+          %h1= typographer(movie['title'])
+          - if movie['release_date']
+            .release_date= format_date(movie['release_date'], @time_filter)
+  -if @all > @offset + @movies.count
+    .next.hide
+      .offset.hide= @offset + @movies.count
+      %input( type='button' value='Gimme more ↓' )
+    
+- else
+  %h1.empty No movies
