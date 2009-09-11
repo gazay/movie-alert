@@ -40,7 +40,6 @@ task :deploy do
   ssh do |ssh|
     puts ssh.exec! 'git pull'
     ssh.exec! 'rake compress'
-    ssh.exec! 'compass -c compass.rb --output-style compressed'
   end
   Rake::Task[:restart].invoke
 end
