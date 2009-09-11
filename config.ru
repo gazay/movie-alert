@@ -12,11 +12,6 @@ configure :development do
   end
 end
 
-configure :production do
-  Sass::Plugin.options[:style] = :compressed
-  Sass::Plugin.update_stylesheets
-end
-
 set :views,   'app/views'
 set :public,  'public'
 

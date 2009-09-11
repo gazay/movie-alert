@@ -9,6 +9,17 @@ module Base
     end
   end # Sinatra::Application.environment == :production
 
+  def compress
+    compressor = "lib/assets/compressor.jar"
+    file = full_system_path('application_compressed')
+
+    File.open file, 'w+' do |it|
+      it.puts files.map {|it| File.read full_system_path(it) }.join("\n")
+    end
+
+    `java -jar #{compressor} --charset utf-8 -o #{file} #{file}`
+  end
+
   protected
 
   def sources
