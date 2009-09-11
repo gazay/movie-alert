@@ -1,3 +1,9 @@
+def javascript_include(*files)
+  files.inject '' do |html, file|
+    html + "<script src='/javascripts/#{file}.js' type='text/javascript'></script>"
+  end
+end
+
 def params_to_query(params)
   params.delete('captures')
   params.delete('offset')
