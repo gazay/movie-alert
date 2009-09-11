@@ -2,7 +2,7 @@ def params_to_query(params)
   params.delete('captures')
   params.delete('offset')
   
-  Hash[params.to_a.map do |key, value|
+  params.inject({}) do |query, (key, value)|
     case key
     when 'year'
       value = value.to_i
@@ -18,8 +18,9 @@ def params_to_query(params)
     when 'director'
       value = /#{value}/i
     end
-    [key, value]
-  end]
+    query[key] = value
+    query
+  end
 end
 
 def format_date(date, year)
