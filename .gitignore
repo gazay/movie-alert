@@ -1,8 +1,8 @@
-*.DS_Store
-nbproject
-*~
-
+~
+.DS_Store
 .sass-cache
-*.css
-public/posters
 tmp
+nbproject
+public/stylesheets
+public/posters
+
