@@ -3,8 +3,8 @@
   %head
     %title Movie Alert
     %meta( content='text/html; charset=UTF-8' http-equiv='Content-Type' )
-    = Assets.include_stylesheets
-    = Assets.include_javascripts
+    = Assets.stylesheets.bundle
+    = Assets.javascripts.bundle
     %link( href='/favicon.ico' rel='shortcut icon' )
   %body
     %form#header( action='/subscribe' method='post' )
