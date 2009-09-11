@@ -1,13 +1,15 @@
 module Base
-  if Sinatra::Application.environment == :production
-    def bundle
-      include_links + tag_for_file('application_compressed')
-    end
-  else
-    def bundle
-      include_links + include_files
-    end
-  end # Sinatra::Application.environment == :production
+  if Object.const_defined? 'Sinatra'
+    if Sinatra::Application.environment == :production
+      def bundle
+        include_links + tag_for_file('application_compressed')
+      end
+    else
+      def bundle
+        include_links + include_files
+      end
+    end # Sinatra::Application.environment == :production
+  end # Object.const_defined? 'Sinatra'
 
   def compress
     compressor = "lib/assets/compressor.jar"

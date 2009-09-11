@@ -24,14 +24,9 @@ end
 
 desc 'Compress files'
 task :compress do
-  all_js = ['jquery.address.min', 'jquery.autocomplete.min', 'jquery.tools', 'application'].inject('') do |all, name|
-    all << File.read("public/javascripts/#{name}.js")
-  end
-  compressed_path = 'public/javascripts/application_compressed.js'
-  File.open(compressed_path, 'w+') do |f|
-    f.write all_js
-  end
-  `java -jar lib/yuicompressor.jar --charset utf-8 -o #{compressed_path} #{compressed_path}`
+  require 'lib/assets'
+  Assets.javascripts.compress
+  Assets.stylesheets.compress
 end
 
 desc 'Restart server'
