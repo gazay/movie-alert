@@ -1,7 +1,7 @@
 require 'config/dependencies'
 require 'config/compass'
 require 'config/database'
-require 'scripts/subscription'
+require 'lib/subscription'
 require 'app/helpers'
 require 'app/application'
 
