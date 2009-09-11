@@ -1,4 +1,4 @@
-require 'dependencies'
+require 'config/dependencies'
 require 'config/compass'
 require 'config/database'
 require 'scripts/subscription'
