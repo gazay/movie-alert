@@ -120,7 +120,7 @@ jQuery(function($) {
         $('#movies ul, .empty').addClass('old')
         $('#logo').addClass('loading')
         
-        $.get('/index.part', data, function(content) {
+        $.get('/', data, function(content) {
             $('.empty, .next').remove()
             $('#movies').prepend(content)
             $('#logo').removeClass('loading')
@@ -176,7 +176,7 @@ jQuery(function($) {
         var data = getSearchData()
         $('.next').addClass('loading')
         data['offset'] = $('#movies .next .offset').text()
-        $.get('/index.part', data, function(content) {
+        $.get('/', data, function(content) {
             $('#movies .next').remove()
             $('#movies').append(content)
             $('#movies ul:last').show()

@@ -1,5 +1,5 @@
 - unless @movies.empty?
-  %ul{ :class => hide_if_part(@format) }
+  %ul{ :class => hide_if_ajax }
     - @movies.each do |movie|
       %li( id="movie-#{movie['imdb_id']}" )
         .panel

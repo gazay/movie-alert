@@ -43,8 +43,8 @@ def format_date(date, year)
   end
 end
 
-def hide_if_part(format)
-  'part' == format ? 'hide' : ''
+def hide_if_ajax
+  'hide' if request.xhr?
 end
 
 def typographer(string)

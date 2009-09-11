@@ -1,5 +1,4 @@
-get /^\/(index.(html|part))?$/ do
-  @format = params['captures'] ? params['captures'][1] : 'html'
+get '/' do
   @release_months = Cache.find_one(:name => 'release_months')['value']
   
   @offset = (params['offset'] || 0).to_i
