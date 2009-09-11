@@ -24,6 +24,10 @@ module Assets
   private
 
   def include_as(tag, files)
+    if Sinatra::Application.environment == :production
+      return send tag, 'application_compressed'
+    end
+
     files.inject '' do |html, file|
       html + send(tag, file)
     end
