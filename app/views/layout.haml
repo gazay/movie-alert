@@ -3,9 +3,8 @@
   %head
     %title Movie Alert
     %meta( content='text/html; charset=UTF-8' http-equiv='Content-Type' )
-    %link( rel='stylesheet' type='text/css' href='/stylesheets/application.css' )
-    %script( type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js' )
-    = javascript_include 'jquery.tools', 'jquery.autocomplete.min', 'jquery.address.min', 'application'
+    = Assets.include_stylesheets
+    = Assets.include_javascripts
     %link( href='/favicon.ico' rel='shortcut icon' )
   %body
     %form#header( action='/subscribe' method='post' )
