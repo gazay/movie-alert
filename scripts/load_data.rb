@@ -23,24 +23,24 @@ ids.each do |id|
   id = id.strip
   next if id.empty?
   next if Movies.find_one('imdb_id' => id)
-  
+
   movie = ImdbMovie.new(id)
   movie.get_data
-  
-  
+
+
   unless movie.director
     puts "#{i}/#{j}/#{all}"
     next
   end
-  
+
   if movie.plot
     plot = movie.plot.sub(/\s\|$/, '').gsub(/<[^<]+>/, '')
   else
     plot = ''
   end
-  
+
   release_date = movie.release_date && movie.release_date.to_s
-  
+
   i += 1
   puts "#{i}/#{j}/#{all} #{id} #{movie.title}"
   puts "    Director: #{movie.director}"
@@ -52,12 +52,12 @@ ids.each do |id|
   puts "    Plot:     #{plot}"
 
   release_timestamp = nil
-  if !movie.release_date.nil? and !movie.release_date.empty?
+  if movie.release_date and !movie.release_date.empty?
     release_timestamp Date.parse(movie.release_date).strftime('%s').to_i
   end
-  
+
   poster_exists = !movie.poster.nil? and !movie.poster.empty?
-  
+
   Movies.insert 'imdb_id'           => id,
                 'title'             => movie.title,
                 'director'          => movie.director,
