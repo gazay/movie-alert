@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require File.join(File.dirname(__FILE__), '..', 'database')
+require 'config/database'
 
 all = Movies.find.count
 i = 0

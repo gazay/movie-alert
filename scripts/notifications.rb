@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
-require File.join(File.dirname(__FILE__), '..', 'database')
-require File.join(File.dirname(__FILE__), '..', 'send')
+require 'config/database'
+require 'lib/send'
 
 def find_subs(day, movies)
   subs = Subs.find().to_a

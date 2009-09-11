@@ -1,5 +1,5 @@
 require 'pathname'
-require Pathname.new(__FILE__).parent + '../database'
+require 'config/database'
 
 posters_dir = (Pathname.new(__FILE__).parent + '../public/posters').expand_path
 missing_posters = []

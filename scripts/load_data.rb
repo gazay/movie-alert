@@ -5,7 +5,7 @@ require 'set'
 
 DB_NAME = 'fresh-data'
 
-require File.join(File.dirname(__FILE__), '..', 'database')
+require 'config/database'
 
 gem 'porras-imdb'
 require 'imdb'

@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 require 'set'
-require File.join(File.dirname(__FILE__), '..', 'database')
+require 'config/database'
 
 Genres.clear
 Directors.clear

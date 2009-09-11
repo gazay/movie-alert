@@ -1,7 +1,7 @@
 require 'eventmachine'
 require 'neverblock'
 require 'net/http'
-require File.join(File.dirname(__FILE__), '..', 'database')
+require 'config/database'
 
 def poster_thumb(poster_url, width=150, height=200)
   poster_url[0..-5] + "._V1._SX#{width}_SY#{height}_.jpg"
