@@ -3,6 +3,6 @@
 .sass-cache
 tmp
 nbproject
-public/stylesheets
 public/posters
-
+public/stylesheets
+public/javascripts/application_compressed.js
