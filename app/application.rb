@@ -29,11 +29,7 @@ get /^\/(index.(html|part))?$/ do
      set_cookie('flash', '')
   end
   
-  if request.xhr?
-    haml :index, :layout => false
-  else
-    haml :index
-  end
+  haml :index, :layout => !request.xhr?
 end
 
 post '/subscribe' do
