@@ -1,7 +1,7 @@
 def params_to_query(params)
   params.delete('captures')
   params.delete('offset')
-  
+
   params.inject({}) do |query, (key, value)|
     case key
     when 'year'
@@ -25,7 +25,7 @@ end
 
 def format_date(date, year)
   date = Date.parse(date)
-  
+
   day = if (11..13).include?(date.mday % 100)
     "#{date.mday}th"
   else
@@ -36,7 +36,7 @@ def format_date(date, year)
     else "#{date.mday}th"
     end
   end
-  
+
   if year
     date.strftime("#{day} of %B, %Y")
   else
