@@ -10,3 +10,7 @@ end
 Compass.configuration.project_path = '.'
 Sass::Plugin.options.merge! Compass.configuration.to_sass_engine_options
 Sass::Plugin.options[:template_location] = Compass.configuration.sass_path
+
+if __FILE__ == $0
+  Sass::Plugin.update_stylesheets
+end
