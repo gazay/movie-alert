@@ -6,7 +6,6 @@ get '/' do
   query = params_to_query(params)
   @empty_search = !query.empty?
   @time_filter = !(query.has_key?('year') or query.has_key?('release_date'))
-  query['title'] = /\w/ unless query.has_key? 'title'
 
   if !query.has_key?('release_date') and
     (!query.has_key?('year') or Date.today.year != query['year'])
