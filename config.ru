@@ -14,7 +14,8 @@ configure :development do
   end
 end
 
-set :views,   'app/views'
-set :public,  'public'
+set :app_file,  'app/application.rb'
+set :views,     'app/views'
+set :public,    'public'
 
 run Sinatra::Application
