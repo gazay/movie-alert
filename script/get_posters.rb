@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 
+require 'rubygems'
 require 'eventmachine'
 gem 'espace-neverblock'
 require 'neverblock'
@@ -21,6 +22,7 @@ end
 
 posters_directory = File.expand_path(File.join File.dirname(__FILE__), '../public/posters')
 
+Dir.mkdir posters_directory unless File.exists? posters_directory
 
 EM.run do
   Pool = NB::Pool::FiberPool.new(50)
