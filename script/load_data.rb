@@ -50,8 +50,12 @@ ids.each do |id|
   puts "    Plot:     #{plot}"
 
   release_timestamp = nil
-  if movie.release_date and !movie.release_date.empty?
-    release_timestamp Date.parse(movie.release_date).strftime('%s').to_i
+  if movie.release_date
+    release_timestamp = if movie.release_date.is_a? String
+      Date.parse(movie.release_date).strftime('%s').to_i
+    else
+      movie.release_date.strftime('%s').to_i
+    end
   end
 
   poster_exists = !movie.poster.nil? and !movie.poster.empty?
