@@ -49,6 +49,7 @@ def hide_if_ajax
 end
 
 def typographer(string)
+  return string unless string.is_a? String
   string.gsub(/(^|\s)"/, '\1“').gsub(/"($|\s)/, '”\1').
          gsub(/(\w)'(\w)/, '\1’\2').gsub('...', '…')
 end
