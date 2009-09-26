@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 
 require 'eventmachine'
+gem 'espace-neverblock'
 require 'neverblock'
 require 'net/http'
 require 'config/database'
