@@ -3,8 +3,6 @@
 require 'yaml'
 require 'set'
 
-DB_NAME = 'fresh-data'
-
 require 'config/database'
 
 gem 'porras-imdb'
