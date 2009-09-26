@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby
+
 require 'eventmachine'
 require 'neverblock'
 require 'net/http'
